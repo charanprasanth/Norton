@@ -1,0 +1,44 @@
+# ---- Build outputs ----
+build/
+/build
+app/build/
+.gradle/
+.gradle
+
+# ---- Local machine config (never commit) ----
+local.properties
+
+# ---- Android Studio / IntelliJ ----
+*.iml
+.idea/
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+
+# ---- macOS ----
+.DS_Store
+**/.DS_Store
+
+# ---- Gradle wrapper jar (scripts are fine, jar is binary) ----
+gradle/wrapper/gradle-wrapper.jar
+
+# ---- NDK / CMake ----
+.externalNativeBuild/
+.externalNativeBuild
+.cxx/
+.cxx
+
+# ---- Release artifacts ----
+*.apk
+*.aab
+*.ap_
+/captures
+
+# ---- Kotlin incremental compilation cache ----
+**/.kotlin/
+
+# ---- Skill files (project tooling, not source) ----
+*.skill
