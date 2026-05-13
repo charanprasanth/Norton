@@ -30,7 +30,8 @@ import com.charan.norton.R
 fun InputField(
     value: String,
     onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true
 ) {
     val clipboardManager = LocalClipboardManager.current
 
@@ -48,6 +49,7 @@ fun InputField(
         horizontalAlignment = Alignment.End
     ) {
         BasicTextField(
+            enabled = enabled,
             value = value,
             onValueChange = onValueChange,
             modifier = Modifier

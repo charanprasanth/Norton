@@ -1,5 +1,10 @@
 package com.charan.norton.features.genie.presentation
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -20,6 +25,7 @@ import com.charan.norton.common.components.SubTitleText
 import com.charan.norton.common.components.TitleText
 import com.charan.norton.common.theme.NortonTheme
 import com.charan.norton.features.genie.presentation.components.ExampleChip
+import com.charan.norton.features.genie.presentation.components.GenieAnalysing
 import com.charan.norton.features.genie.presentation.components.GenieResult
 import com.charan.norton.features.genie.presentation.components.InputField
 
@@ -51,23 +57,38 @@ fun GenieContent(
 
         InputField(
             value = state.inputText,
-            onValueChange = { onAction(GenieAction.OnInputTextChange(it)) }
+            onValueChange = { onAction(GenieAction.OnInputTextChange(it)) },
+            enabled = !state.isLoading,
         )
 
-        Text(
-            text = "TRY AN EXAMPLE",
-            style = MaterialTheme.typography.titleMedium,
-            color = MaterialTheme.colorScheme.outline,
-            modifier = Modifier.padding(top = 15.dp, bottom = 10.dp)
-        )
-
-        genieExamples.forEach { (label, text) ->
-            ExampleChip(
-                label = label,
-                text = text,
-                modifier = Modifier.padding(bottom = 10.dp),
-                onClick = { onAction(GenieAction.OnInputTextChange(text)) }
-            )
+        AnimatedContent(
+            targetState = state.isLoading,
+            transitionSpec = {
+                fadeIn(animationSpec = tween(400)) togetherWith fadeOut(animationSpec = tween(400))
+            },
+        ) { isLoading ->
+            if (isLoading) {
+                GenieAnalysing(
+                    modifier = Modifier.padding(top = 15.dp, bottom = 10.dp)
+                )
+            } else {
+                Column {
+                    Text(
+                        text = "TRY AN EXAMPLE",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.outline,
+                        modifier = Modifier.padding(top = 15.dp, bottom = 10.dp)
+                    )
+                    genieExamples.forEach { (label, text) ->
+                        ExampleChip(
+                            label = label,
+                            text = text,
+                            modifier = Modifier.padding(bottom = 10.dp),
+                            onClick = { onAction(GenieAction.OnInputTextChange(text)) }
+                        )
+                    }
+                }
+            }
         }
 
         Spacer(modifier = Modifier.weight(1f))
