@@ -17,7 +17,9 @@ import com.charan.norton.common.components.BottomNavBar
 import com.charan.norton.common.navigation.NortonNavGraph
 import com.charan.norton.common.navigation.Screen
 import com.charan.norton.common.theme.NortonTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

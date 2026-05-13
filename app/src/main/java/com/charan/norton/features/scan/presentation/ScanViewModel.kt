@@ -1,4 +1,9 @@
 package com.charan.norton.features.scan.presentation
 
-class ScanViewModel {
+import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+
+@HiltViewModel
+class ScanViewModel @Inject constructor() : ViewModel() {
 }
