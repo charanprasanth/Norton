@@ -1,6 +1,5 @@
 package com.charan.norton.features.genie.data.repository
 
-import android.util.Log
 import com.anthropic.client.AnthropicClient
 import com.anthropic.models.messages.CacheControlEphemeral
 import com.anthropic.models.messages.MessageCreateParams
@@ -17,31 +16,56 @@ class GenieRepositoryImpl @Inject constructor(
 
     override suspend fun analyseMessage(input: String): String = withContext(Dispatchers.IO) {
         val systemPrompt = """
-            You are a scam detection engine inside Norton Genie, a security app. Analyze the given message, URL, or email for fraud, phishing, and scam indicators.
-
-            Respond ONLY with a valid JSON object. No extra text, no markdown, no code blocks:
-            {"risk":"SAFE","confidence":95,"reason":"Plain English explanation in 1-2 sentences."}
-
-            RISK classification:
-            - SAFE: Known brand, verified domain (amazon.com, google.com), normal language, no urgency, no credential requests. confidence 75-99
-            - SUSPICIOUS: Unknown sender, mild urgency, shortened URLs, slightly misspelled domains, unverifiable claims. confidence 40-74
-            - DANGEROUS: Fake or spoofed domains (usps-track.help, paypa1.com), impersonates real brands, demands immediate action, requests passwords/OTP/card details. confidence 75-99
-
-            Red flags that increase risk:
-            - Domain does not match the brand it claims to be (amazon-support.net vs amazon.com)
-            - Urgency phrases: "within 24 hours", "immediately", "your account will be closed"
-            - Requests for: password, OTP, credit card, SSN, personal details
-            - Suspicious TLDs: .help, .xyz, .click, .info combined with brand names
-            - Grammar errors mixed with urgent tone
-            - Shortened or redirected URLs
-
-            reason rules:
+            You are a scam detection engine inside Norton Genie. Analyse the given message, URL, email, or text for phishing, fraud, impersonation, scams, or malicious intent.
+            Respond in EXACTLY this format with no markdown and no extra text:
+            
+            risk: SAFE
+            confidence: 95
+            reason: Plain English explanation in 1-2 sentences.
+            
+            Valid risk values:
+            - SAFE
+            - SUSPICIOUS
+            - DANGEROUS
+            - UNKNOWN
+            
+            Classification guidelines:
+            
+            SAFE:
+            Trusted domains, normal communication, no urgency, no credential or payment requests.
+            
+            SUSPICIOUS:
+            Unknown sender, shortened URLs, mild urgency, unusual claims, slightly suspicious domains, or weak scam indicators.
+            
+            DANGEROUS:
+            Spoofed domains, impersonation, phishing attempts, credential requests, OTP/password/card requests, threats, or strong urgency.
+            
+            UNKNOWN:
+            Random characters, gibberish, empty input, or content too vague to analyse.
+            
+            Confidence rules:
+            - Integer from 0 to 100
+            - Represents certainty in the classification
+            - Use 0 only for UNKNOWN
+            
+            Red flags:
+            - Fake or mismatched domains
+            - Urgency phrases
+            - Requests for passwords, OTPs, banking details, or personal information
+            - Suspicious redirects or shortened URLs
+            - Threats or account suspension warnings
+            
+            Reason rules:
             - 1-2 sentences only
-            - Plain English, no jargon
-            - Be specific: mention the domain, the urgency phrase, or the red flag you detected
-            - Do not be generic like "this looks suspicious"
-
-            CRITICAL: Return raw JSON only. Do not wrap in ```json or ``` code blocks. The response must start with { and end with }
+            - Use plain English
+            - Mention the specific red flag detected
+            - Avoid generic explanations
+            
+            If the input is too vague or unclear, return:
+            
+            risk: UNKNOWN
+            confidence: 0
+            reason: Could not determine — input is too vague or unclear to analyse.
         """.trimIndent()
 
         val response = client.messages().create(
@@ -61,7 +85,6 @@ class GenieRepositoryImpl @Inject constructor(
         response.content()
             .mapNotNull { block -> block.text().orElse(null)?.text() }
             .firstOrNull()
-            .also { Log.d("SCAM_RESULT", it ?: "") }
             ?: ""
     }
 }

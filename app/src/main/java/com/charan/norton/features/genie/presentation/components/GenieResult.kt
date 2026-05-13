@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.HelpOutline
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.outlined.Cancel
@@ -55,6 +56,13 @@ private data class RiskUi(
 )
 
 private fun RiskLevel.toUi(): RiskUi = when (this) {
+    RiskLevel.UNKNOWN -> RiskUi(
+        label = "Unknown",
+        icon = Icons.AutoMirrored.Outlined.HelpOutline,
+        color = Color.Gray,
+        containerColor = Color.Gray.copy(alpha = 0.2f),
+        headline = "Could not determine"
+    )
     RiskLevel.SAFE -> RiskUi(
         label = "Safe",
         icon = Icons.Filled.CheckCircle,

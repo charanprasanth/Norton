@@ -31,7 +31,7 @@ val PrimaryEdgeDark = Color(0xFF7B68C4)
 // Status Colors - Dark
 val SafeColorDark = Color(0xFF4CAF50)
 val WarningColorDark = Color(0xFFD4A574)
-val DangerColorDark = Color(0xFFEF9A9A)
+val DangerColorDark = Color(0xFFCC1D39)
 
 // Neutral Colors - Dark
 val BgColorDark = Color(0xFF0F0E14)
