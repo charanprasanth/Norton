@@ -13,13 +13,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.charan.norton.common.components.PrimaryButton
 import com.charan.norton.common.components.SubTitleText
 import com.charan.norton.common.components.TitleText
 import com.charan.norton.common.theme.NortonTheme
 import com.charan.norton.features.genie.presentation.components.ExampleChip
+import com.charan.norton.features.genie.presentation.components.GenieResult
 import com.charan.norton.features.genie.presentation.components.InputField
 
 @Composable
@@ -65,18 +66,26 @@ fun GenieContent(
                 label = label,
                 text = text,
                 modifier = Modifier.padding(bottom = 10.dp),
-                onClick = { value ->
-                    onAction(GenieAction.OnInputTextChange(value))
-                }
+                onClick = { onAction(GenieAction.OnInputTextChange(text)) }
             )
         }
 
         Spacer(modifier = Modifier.weight(1f))
 
         PrimaryButton(
-            text = "Analyse",
-            onClick = {},
+            text = if (state.isLoading) "Analysing..." else "Analyse",
+            onClick = { onAction(GenieAction.OnAnalyse) },
+            enabled = state.inputText.isNotEmpty() && !state.isLoading,
             modifier = Modifier.fillMaxWidth()
+        )
+    }
+
+    state.result?.let { result ->
+        GenieResult(
+            riskLevel = result.riskLevel,
+            confidence = result.confidence,
+            explanation = result.explanation,
+            onDismiss = { onAction(GenieAction.OnDismissResult) },
         )
     }
 }
