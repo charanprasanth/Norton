@@ -42,12 +42,20 @@ fun BottomNavBar(
             color = MaterialTheme.colorScheme.surface
         )
     ) {
+        DeviceOffline()
         NavigationBar(
             containerColor = MaterialTheme.colorScheme.surface,
             tonalElevation = 0.dp,
         ) {
             bottomNavItems.forEach { item ->
-                val selected = currentRoute == item.screen.route
+                val selected = when (item.screen) {
+                    Screen.Home -> currentRoute in listOf(
+                        Screen.Home.route,
+                        Screen.Scan.route,
+                        Screen.ScanResult.route
+                    )
+                    else -> currentRoute == item.screen.route
+                }
                 NavigationBarItem(
                     selected = selected,
                     onClick = { onItemSelected(item.screen) },
