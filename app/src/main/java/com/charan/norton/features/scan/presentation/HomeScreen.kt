@@ -21,6 +21,8 @@ import androidx.compose.ui.unit.dp
 import com.charan.norton.common.components.PrimaryButton
 import com.charan.norton.common.components.SubTitleText
 import com.charan.norton.common.components.TitleText
+import androidx.compose.ui.res.stringResource
+import com.charan.norton.R
 import com.charan.norton.common.theme.NortonTheme
 import com.charan.norton.features.scan.presentation.components.NotScannedIndicator
 
@@ -32,10 +34,10 @@ fun HomeScreen(onScanClick: () -> Unit = {}) {
             .background(MaterialTheme.colorScheme.background)
             .padding(horizontal = 16.dp, vertical = 20.dp),
     ) {
-        TitleText(text = "Good morning")
+        TitleText(text = stringResource(R.string.home_greeting))
 
         SubTitleText(
-            text = "Run a quick check to see how your device is doing today.",
+            text = stringResource(R.string.home_subtitle),
             modifier = Modifier.padding(top = 5.dp, bottom = 24.dp)
         )
 
@@ -56,14 +58,14 @@ fun HomeScreen(onScanClick: () -> Unit = {}) {
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     Text(
-                        text = "Tap to scan your device",
+                        text = stringResource(R.string.home_scan_card_title),
                         style = MaterialTheme.typography.titleLarge,
                         color = MaterialTheme.colorScheme.onSurface,
                         fontWeight = FontWeight.SemiBold,
                         textAlign = TextAlign.Center
                     )
                     Text(
-                        text = "We'll check OS health, app threats, Wi-Fi safety and passwords. Takes about 10 seconds.",
+                        text = stringResource(R.string.home_scan_card_subtitle),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center
@@ -75,7 +77,7 @@ fun HomeScreen(onScanClick: () -> Unit = {}) {
         Spacer(modifier = Modifier.weight(1f))
 
         PrimaryButton(
-            text = "Scan now",
+            text = stringResource(R.string.home_scan_button),
             modifier = Modifier.fillMaxWidth(),
             onClick = onScanClick
         )

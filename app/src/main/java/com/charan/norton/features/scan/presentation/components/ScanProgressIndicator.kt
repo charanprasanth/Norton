@@ -22,9 +22,11 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
+import com.charan.norton.R
 
 @Composable
 fun ScanProgressIndicator(
@@ -83,7 +85,7 @@ fun ScanProgressIndicator(
             )
             if (progress != 1f) {
                 Text(
-                    text = "SCANNING",
+                    text = stringResource(R.string.status_scanning),
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                     letterSpacing = TextUnit(1.5f, TextUnitType.Sp)

@@ -33,6 +33,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.charan.norton.common.components.PrimaryButton
 import com.charan.norton.common.components.SubTitleText
 import com.charan.norton.common.components.TitleText
+import androidx.compose.ui.res.stringResource
+import com.charan.norton.R
 import com.charan.norton.common.theme.NortonTheme
 import com.charan.norton.features.scan.domain.model.CheckStatus
 import com.charan.norton.features.scan.domain.model.ScanCheck
@@ -58,11 +60,13 @@ fun ScanScreen(
 fun ScanContent(state: ScanState, onBack: () -> Unit, onViewResults: () -> Unit) {
 
     // Current scanning check label
+    val scanCompleteLabel = stringResource(R.string.scan_complete)
+    val scanCheckingFormat = stringResource(R.string.scan_checking_format)
     val currentCheckLabel = when {
-        state.isComplete -> "Scanning Complete"
+        state.isComplete -> scanCompleteLabel
         else -> state.checks
             .getOrNull(state.currentCheckIndex)
-            ?.let { "Checking ${it.title.lowercase()}..." }
+            ?.let { scanCheckingFormat.format(it.title.lowercase()) }
             ?: ""
     }
 
@@ -78,15 +82,15 @@ fun ScanContent(state: ScanState, onBack: () -> Unit, onViewResults: () -> Unit)
             IconButton(onClick = onBack) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
-                    contentDescription = "Back",
+                    contentDescription = stringResource(R.string.cd_back),
                     tint = MaterialTheme.colorScheme.onBackground
                 )
             }
-            TitleText(text = "Scan device")
+            TitleText(text = stringResource(R.string.scan_title))
         }
 
         SubTitleText(
-            text = "Stay on this screen while we run all four checks.",
+            text = stringResource(R.string.scan_subtitle),
             modifier = Modifier.padding(top = 4.dp)
         )
 
@@ -127,13 +131,13 @@ fun ScanContent(state: ScanState, onBack: () -> Unit, onViewResults: () -> Unit)
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(
-                            text = "CHECKS",
+                            text = stringResource(R.string.scan_checks_header),
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                             letterSpacing = TextUnit(1.2f, TextUnitType.Sp)
                         )
                         Text(
-                            text = "$completedCount OF ${state.checks.size}",
+                            text = stringResource(R.string.scan_checks_progress, completedCount, state.checks.size),
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
                         )
@@ -162,7 +166,7 @@ fun ScanContent(state: ScanState, onBack: () -> Unit, onViewResults: () -> Unit)
             Spacer(modifier = Modifier.weight(1f))
 
             PrimaryButton(
-                text = "View Results",
+                text = stringResource(R.string.scan_view_results),
                 modifier = Modifier.fillMaxWidth(),
                 onClick = onViewResults
             )

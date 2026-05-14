@@ -15,6 +15,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.charan.norton.R
 import com.charan.norton.common.theme.SafeColorDark
 import com.charan.norton.features.scan.domain.model.CheckStatus
 
@@ -27,7 +29,7 @@ fun StatusPill(status: CheckStatus) {
                 color = SafeColorDark.copy(alpha = 0.15f)
             ) {
                 Text(
-                    text = "✓  SECURE",
+                    text = stringResource(R.string.status_secure),
                     style = MaterialTheme.typography.labelSmall,
                     color = SafeColorDark,
                     fontWeight = FontWeight.Bold,
@@ -54,7 +56,7 @@ fun StatusPill(status: CheckStatus) {
                             )
                     )
                     Text(
-                        text = "SCANNING",
+                        text = stringResource(R.string.status_scanning),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.primary,
                         fontWeight = FontWeight.Bold
@@ -68,7 +70,7 @@ fun StatusPill(status: CheckStatus) {
                 color = MaterialTheme.colorScheme.errorContainer
             ) {
                 Text(
-                    text = "⚠ REVIEW",
+                    text = stringResource(R.string.status_review),
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.error,
                     fontWeight = FontWeight.Bold,
@@ -82,7 +84,7 @@ fun StatusPill(status: CheckStatus) {
                 color = MaterialTheme.colorScheme.surfaceVariant
             ) {
                 Text(
-                    text = "—",
+                    text = stringResource(R.string.status_pending),
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
                     modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp)
@@ -95,7 +97,7 @@ fun StatusPill(status: CheckStatus) {
                 color = MaterialTheme.colorScheme.secondaryContainer
             ) {
                 Text(
-                    text = "✓  COMPLETE",
+                    text = stringResource(R.string.status_complete),
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSecondaryContainer,
                     fontWeight = FontWeight.Bold,

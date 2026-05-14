@@ -13,6 +13,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import com.charan.norton.R
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -58,14 +60,14 @@ fun NotScannedIndicator(size: Dp = 200.dp) {
             ) {
                 Icon(
                     imageVector = Icons.Outlined.Security,
-                    contentDescription = "Security",
+                    contentDescription = null,
                     tint = iconColor,
                     modifier = Modifier.size(28.dp)
                 )
             }
 
             Text(
-                text = "NOT SCANNED",
+                text = stringResource(R.string.home_not_scanned),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
                 fontWeight = FontWeight.Medium,

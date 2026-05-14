@@ -38,7 +38,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import com.charan.norton.R
 import com.charan.norton.common.components.SubTitleText
 import com.charan.norton.common.components.TitleText
 import com.charan.norton.common.theme.DangerColorDark
@@ -83,15 +85,15 @@ fun ScanResultContent(scanResult: SecurityScore?, onBack: () -> Unit) {
     }
 
     val summaryTitle = when {
-        score >= 80 -> "Device is secure"
-        score >= 50 -> "Device is mostly secure"
-        else -> "Device needs attention"
+        score >= 80 -> stringResource(R.string.scan_result_headline_secure)
+        score >= 50 -> stringResource(R.string.scan_result_headline_mostly_secure)
+        else -> stringResource(R.string.scan_result_headline_attention)
     }
 
     val summarySubtitle = when {
-        needsReviewCount == 0 -> "All checks passed. Your device is protected."
-        needsReviewCount == 1 -> "1 check needs your attention. Tap each item to fix it."
-        else -> "$needsReviewCount checks need your attention. Tap each item to fix it."
+        needsReviewCount == 0 -> stringResource(R.string.scan_result_summary_all_passed)
+        needsReviewCount == 1 -> stringResource(R.string.scan_result_summary_one_issue)
+        else -> stringResource(R.string.scan_result_summary_multiple_issues, needsReviewCount)
     }
 
     Column(
@@ -104,15 +106,15 @@ fun ScanResultContent(scanResult: SecurityScore?, onBack: () -> Unit) {
             IconButton(onClick = onBack) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
-                    contentDescription = "Back",
+                    contentDescription = stringResource(R.string.cd_back),
                     tint = MaterialTheme.colorScheme.onBackground
                 )
             }
-            TitleText(text = "Scan results")
+            TitleText(text = stringResource(R.string.scan_result_title))
         }
 
         SubTitleText(
-            text = "Last scan · just now",
+            text = stringResource(R.string.scan_result_subtitle),
             modifier = Modifier.padding(top = 4.dp)
         )
 
@@ -157,13 +159,13 @@ fun ScanResultContent(scanResult: SecurityScore?, onBack: () -> Unit) {
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = "SCORE",
+                            text = stringResource(R.string.scan_result_score_label),
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                             letterSpacing = TextUnit(1.5f, TextUnitType.Sp)
                         )
                         Text(
-                            text = "out of 100",
+                            text = stringResource(R.string.scan_result_score_max),
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f)
                         )
@@ -204,14 +206,14 @@ fun ScanResultContent(scanResult: SecurityScore?, onBack: () -> Unit) {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "ALL CHECKS",
+                        text = stringResource(R.string.scan_result_all_checks_header),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                         letterSpacing = TextUnit(1.2f, TextUnitType.Sp)
                     )
                     if (needsReviewCount > 0) {
                         Text(
-                            text = "$needsReviewCount NEED REVIEW",
+                            text = stringResource(R.string.scan_result_need_review, needsReviewCount),
                             style = MaterialTheme.typography.labelSmall,
                             color = WarningColorDark,
                             fontWeight = FontWeight.Bold,

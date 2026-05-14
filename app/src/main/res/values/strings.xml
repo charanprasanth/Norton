@@ -34,6 +34,47 @@
     <string name="genie_result_cd_close">Close</string>
     <string name="genie_result_analyse_another">Analyse another</string>
 
+    <!-- Home screen -->
+    <string name="home_greeting">Good morning</string>
+    <string name="home_subtitle">Run a quick check to see how your device is doing today.</string>
+    <string name="home_scan_card_title">Tap to scan your device</string>
+    <string name="home_scan_card_subtitle">We\'ll check OS health, app threats, Wi-Fi safety and passwords. Takes about 10 seconds.</string>
+    <string name="home_not_scanned">NOT SCANNED</string>
+    <string name="home_scan_button">Scan now</string>
+
+    <!-- Scan screen -->
+    <string name="scan_title">Scanning device</string>
+    <string name="scan_subtitle">Stay on this screen while we run all four checks.</string>
+    <string name="scan_complete">Scanning Complete</string>
+    <string name="scan_checking_format">Checking %s…</string>
+    <string name="scan_checks_header">CHECKS</string>
+    <string name="scan_checks_progress">%1$d OF %2$d</string>
+    <string name="scan_view_results">View Results</string>
+
+    <!-- Scan result screen -->
+    <string name="scan_result_title">Scan results</string>
+    <string name="scan_result_subtitle">Last scan · just now</string>
+    <string name="scan_result_score_label">SCORE</string>
+    <string name="scan_result_score_max">out of 100</string>
+    <string name="scan_result_headline_secure">Device is secure</string>
+    <string name="scan_result_headline_mostly_secure">Device is mostly secure</string>
+    <string name="scan_result_headline_attention">Device needs attention</string>
+    <string name="scan_result_summary_all_passed">All checks passed. Your device is protected.</string>
+    <string name="scan_result_summary_one_issue">1 check needs your attention. Tap each item to fix it.</string>
+    <string name="scan_result_summary_multiple_issues">%d checks need your attention. Tap each item to fix it.</string>
+    <string name="scan_result_all_checks_header">ALL CHECKS</string>
+    <string name="scan_result_need_review">%d NEED REVIEW</string>
+
+    <!-- Check status pills -->
+    <string name="status_secure">✓  SECURE</string>
+    <string name="status_scanning">SCANNING</string>
+    <string name="status_review">⚠ REVIEW</string>
+    <string name="status_pending">—</string>
+    <string name="status_complete">✓  COMPLETE</string>
+
+    <!-- Shared -->
+    <string name="cd_back">Back</string>
+
     <!-- Example chips -->
     <string name="genie_example_label_sms">SMS</string>
     <string name="genie_example_text_sms">USPS: Your package is held. Confirm delivery address within 24h: usps-track.help/x29f</string>
