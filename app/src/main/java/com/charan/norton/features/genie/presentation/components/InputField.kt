@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.outlined.ContentPaste
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -32,7 +31,6 @@ fun InputField(
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    onAnalyseClicked: () -> Unit
 ) {
     val clipboardManager = LocalClipboardManager.current
 
@@ -86,14 +84,6 @@ fun InputField(
                 }
             )
 
-            NortonIconButton(
-                onClick = onAnalyseClicked,
-                imageVector = Icons.AutoMirrored.Filled.Send,
-                description = stringResource(R.string.genie_cd_analyse),
-                enabled = enabled && value.isNotEmpty(),
-                tint = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.padding(top = 5.dp, start = 10.dp)
-            )
         }
     }
 }
@@ -101,5 +91,5 @@ fun InputField(
 @Preview
 @Composable
 private fun InputFieldPreview() {
-    InputField(value = "", onValueChange = { }, onAnalyseClicked = {})
+    InputField(value = "", onValueChange = { })
 }

@@ -99,8 +99,6 @@ fun ScanResultContent(scanResult: SecurityScore?, onBack: () -> Unit) {
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
             .padding(horizontal = 16.dp, vertical = 20.dp)
-            .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             IconButton(onClick = onBack) {
@@ -118,9 +116,9 @@ fun ScanResultContent(scanResult: SecurityScore?, onBack: () -> Unit) {
             modifier = Modifier.padding(top = 4.dp)
         )
 
-        // Score card
         Surface(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+                .padding(vertical = 15.dp),
             shape = RoundedCornerShape(20.dp),
             color = MaterialTheme.colorScheme.surface
         ) {
@@ -193,7 +191,6 @@ fun ScanResultContent(scanResult: SecurityScore?, onBack: () -> Unit) {
             }
         }
 
-        // Checks list card
         Surface(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(20.dp),

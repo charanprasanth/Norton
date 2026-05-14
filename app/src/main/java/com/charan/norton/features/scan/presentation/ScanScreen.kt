@@ -72,9 +72,7 @@ fun ScanContent(state: ScanState, onBack: () -> Unit, onViewResults: () -> Unit)
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-            .padding(horizontal = 16.dp, vertical = 20.dp)
-            .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+            .padding(horizontal = 16.dp, vertical = 20.dp),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             IconButton(onClick = onBack) {
@@ -84,16 +82,17 @@ fun ScanContent(state: ScanState, onBack: () -> Unit, onViewResults: () -> Unit)
                     tint = MaterialTheme.colorScheme.onBackground
                 )
             }
-            TitleText(text = "Scanning device")
+            TitleText(text = "Scan device")
         }
 
         SubTitleText(
             text = "Stay on this screen while we run all four checks.",
             modifier = Modifier.padding(top = 4.dp)
         )
-        // Progress card
+
         Surface(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+                .padding(vertical = 15.dp),
             shape = RoundedCornerShape(20.dp),
             color = MaterialTheme.colorScheme.surface
         ) {
@@ -114,7 +113,6 @@ fun ScanContent(state: ScanState, onBack: () -> Unit, onViewResults: () -> Unit)
             }
         }
 
-        // Checks list card
         if (state.checks.isNotEmpty()) {
             Surface(
                 modifier = Modifier.fillMaxWidth(),

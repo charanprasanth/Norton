@@ -34,7 +34,7 @@ fun NortonIconButton(
         onClick = onClick,
         enabled = enabled,
         modifier = modifier
-            .size(44.dp)
+            .size(35.dp)
             .clip(CircleShape)
             .border(
                 width = 1.dp,
@@ -46,7 +46,7 @@ fun NortonIconButton(
             imageVector = imageVector,
             contentDescription = description,
             tint = finalColor,
-            modifier = Modifier.size(25.dp),
+            modifier = Modifier.size(20.dp),
         )
     }
 }

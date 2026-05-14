@@ -9,6 +9,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -21,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.charan.norton.R
+import com.charan.norton.common.components.PrimaryButton
 import com.charan.norton.common.components.SubTitleText
 import com.charan.norton.common.components.TitleText
 import com.charan.norton.common.theme.NortonTheme
@@ -59,9 +61,6 @@ fun GenieContent(
             value = state.inputText,
             onValueChange = { onAction(GenieAction.OnInputTextChange(it)) },
             enabled = !state.isLoading,
-            onAnalyseClicked = {
-                onAction(GenieAction.OnAnalyse)
-            }
         )
 
         AnimatedContent(
@@ -95,6 +94,13 @@ fun GenieContent(
         }
 
         Spacer(modifier = Modifier.weight(1f))
+
+        PrimaryButton(
+            text = stringResource(R.string.genie_cd_analyse),
+            enabled = !state.isLoading && state.inputText.isNotBlank(),
+            modifier = Modifier.fillMaxWidth(),
+            onClick = { onAction(GenieAction.OnAnalyse) }
+        )
     }
 
     state.result?.let { result ->
