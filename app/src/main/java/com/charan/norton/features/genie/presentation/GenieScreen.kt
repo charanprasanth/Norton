@@ -15,10 +15,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.charan.norton.R
 import com.charan.norton.common.components.SubTitleText
 import com.charan.norton.common.components.TitleText
 import com.charan.norton.common.theme.NortonTheme
@@ -46,10 +48,10 @@ fun GenieContent(
             .background(color = MaterialTheme.colorScheme.background)
             .padding(vertical = 20.dp, horizontal = 15.dp)
     ) {
-        TitleText(text = "Genie")
+        TitleText(text = stringResource(R.string.genie_title))
 
         SubTitleText(
-            text = "Paste anything suspicious and I'll check it in seconds.",
+            text = stringResource(R.string.genie_subtitle),
             modifier = Modifier.padding(top = 5.dp, bottom = 15.dp)
         )
 
@@ -75,12 +77,12 @@ fun GenieContent(
             } else {
                 Column {
                     Text(
-                        text = "TRY AN EXAMPLE",
+                        text = stringResource(R.string.genie_try_example),
                         style = MaterialTheme.typography.titleMedium,
                         color = MaterialTheme.colorScheme.outline,
                         modifier = Modifier.padding(top = 15.dp, bottom = 10.dp)
                     )
-                    genieExamples.forEach { (label, text) ->
+                    genieExamples().forEach { (label, text) ->
                         ExampleChip(
                             label = label,
                             text = text,

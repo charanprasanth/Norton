@@ -27,20 +27,21 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.charan.norton.R
 import kotlinx.coroutines.delay
-
-private val messages = listOf(
-    "Checking domain reputation...",
-    "Analysing sender patterns...",
-    "Scanning language signals...",
-    "Almost done...",
-)
 
 @Composable
 fun GenieAnalysing(
     modifier: Modifier
 ) {
+    val messages = listOf(
+        stringResource(R.string.genie_analysing_1),
+        stringResource(R.string.genie_analysing_2),
+        stringResource(R.string.genie_analysing_3),
+        stringResource(R.string.genie_analysing_4),
+    )
     var index by remember { mutableIntStateOf(0) }
 
     LaunchedEffect(Unit) {

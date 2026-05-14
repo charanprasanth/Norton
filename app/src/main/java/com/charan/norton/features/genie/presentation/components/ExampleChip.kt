@@ -82,7 +82,7 @@ private fun ExampleChipPreviewLight() {
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            genieExamples.forEach { (label, text) ->
+            genieExamples().forEach { (label, text) ->
                 ExampleChip(
                     label = label,
                     text = text,
@@ -103,7 +103,7 @@ private fun ExampleChipPreviewDark() {
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            genieExamples.forEach { (label, text) ->
+            genieExamples().forEach { (label, text) ->
                 ExampleChip(
                     label = label,
                     text = text,

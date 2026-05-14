@@ -33,12 +33,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.charan.norton.R
 import com.charan.norton.common.components.PrimaryButton
 import com.charan.norton.common.theme.DangerColorDark
 import com.charan.norton.common.theme.NortonTheme
@@ -46,43 +48,42 @@ import com.charan.norton.common.theme.SafeColorDark
 import com.charan.norton.common.theme.WarningColorDark
 import com.charan.norton.features.genie.domain.model.RiskLevel
 
-// Mapping RiskLevel to UI properties
 private data class RiskUi(
-    val label: String,
+    val labelRes: Int,
     val icon: ImageVector,
     val color: Color,
     val containerColor: Color,
-    val headline: String
+    val headlineRes: Int,
 )
 
 private fun RiskLevel.toUi(): RiskUi = when (this) {
     RiskLevel.UNKNOWN -> RiskUi(
-        label = "Unknown",
+        labelRes = R.string.genie_result_label_unknown,
         icon = Icons.AutoMirrored.Outlined.HelpOutline,
         color = Color.Gray,
         containerColor = Color.Gray.copy(alpha = 0.2f),
-        headline = "Could not determine"
+        headlineRes = R.string.genie_result_headline_unknown,
     )
     RiskLevel.SAFE -> RiskUi(
-        label = "Safe",
+        labelRes = R.string.genie_result_label_safe,
         icon = Icons.Filled.CheckCircle,
         color = SafeColorDark,
         containerColor = SafeColorDark.copy(alpha = 0.2f),
-        headline = "Looks legitimate"
+        headlineRes = R.string.genie_result_headline_safe,
     )
     RiskLevel.SUSPICIOUS -> RiskUi(
-        label = "Suspicious",
+        labelRes = R.string.genie_result_label_suspicious,
         icon = Icons.Outlined.Warning,
         color = WarningColorDark,
         containerColor = WarningColorDark.copy(alpha = 0.2f),
-        headline = "Treat with caution"
+        headlineRes = R.string.genie_result_headline_suspicious,
     )
     RiskLevel.DANGEROUS -> RiskUi(
-        label = "Dangerous",
+        labelRes = R.string.genie_result_label_dangerous,
         icon = Icons.Outlined.Cancel,
         color = DangerColorDark,
         containerColor = DangerColorDark.copy(alpha = 0.2f),
-        headline = "It's almost certainly a scam"
+        headlineRes = R.string.genie_result_headline_dangerous,
     )
 }
 
@@ -90,11 +91,14 @@ private fun RiskLevel.toUi(): RiskUi = when (this) {
 @Composable
 fun GenieResult(
     riskLevel: RiskLevel,
-    confidence: Int, // 0-100
+    confidence: Int,
     explanation: String,
     onDismiss: () -> Unit
 ) {
     val riskUi = riskLevel.toUi()
+
+    val label = stringResource(riskUi.labelRes)
+    val headline = stringResource(riskUi.headlineRes)
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
     ModalBottomSheet(
@@ -110,7 +114,6 @@ fun GenieResult(
                 .padding(horizontal = 20.dp, vertical = 24.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // Drag handle
             Surface(
                 modifier = Modifier
                     .width(32.dp)
@@ -120,13 +123,13 @@ fun GenieResult(
                 color = MaterialTheme.colorScheme.outline.copy(alpha = 0.4f)
             ) {}
 
-            // Risk badge + close button
             Row(
-                modifier = Modifier.padding(top = 4.dp).fillMaxWidth(),
+                modifier = Modifier
+                    .padding(top = 4.dp)
+                    .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Risk pill
                 Surface(
                     shape = RoundedCornerShape(50.dp),
                     color = riskUi.containerColor
@@ -138,36 +141,33 @@ fun GenieResult(
                     ) {
                         Icon(
                             imageVector = riskUi.icon,
-                            contentDescription = riskUi.label,
+                            contentDescription = label,
                             tint = riskUi.color,
                             modifier = Modifier.size(16.dp)
                         )
                         Text(
-                            text = riskUi.label,
+                            text = label,
                             style = MaterialTheme.typography.labelMedium,
                             color = riskUi.color
                         )
                     }
                 }
 
-                // Close button
                 IconButton(onClick = onDismiss) {
                     Icon(
                         imageVector = Icons.Filled.Close,
-                        contentDescription = "Close",
+                        contentDescription = stringResource(R.string.genie_result_cd_close),
                         tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                     )
                 }
             }
 
-            // Headline
             Text(
-                text = riskUi.headline,
+                text = headline,
                 style = MaterialTheme.typography.headlineMedium,
                 color = MaterialTheme.colorScheme.onSurface
             )
 
-            // Confidence score
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Row(verticalAlignment = Alignment.Bottom) {
                     Text(
@@ -189,14 +189,13 @@ fun GenieResult(
                     )
                     Spacer(Modifier.width(8.dp))
                     Text(
-                        text = "CONFIDENCE",
+                        text = stringResource(R.string.genie_result_confidence_label),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                         modifier = Modifier.padding(bottom = 6.dp)
                     )
                 }
 
-                // Progress bar
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -213,7 +212,6 @@ fun GenieResult(
                 }
             }
 
-            // Explanation
             Text(
                 text = explanation,
                 style = MaterialTheme.typography.bodyMedium,
@@ -222,9 +220,8 @@ fun GenieResult(
 
             Spacer(Modifier.height(8.dp))
 
-            // Analyse another button
             PrimaryButton(
-                text = "Analyse another",
+                text = stringResource(R.string.genie_result_analyse_another),
                 modifier = Modifier.fillMaxWidth(),
                 onClick = onDismiss
             )

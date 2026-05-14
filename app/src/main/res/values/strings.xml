@@ -1,3 +1,44 @@
 <resources>
     <string name="app_name">Norton</string>
+
+    <!-- Genie screen -->
+    <string name="genie_title">Genie</string>
+    <string name="genie_subtitle">Paste anything suspicious and I\'ll check it in seconds.</string>
+    <string name="genie_try_example">TRY AN EXAMPLE</string>
+
+    <!-- Input field -->
+    <string name="genie_input_placeholder">Paste suspicious message, email, or URL…</string>
+    <string name="genie_cd_paste_clipboard">Paste from clipboard</string>
+    <string name="genie_cd_analyse">Analyse</string>
+
+    <!-- Analysing loading messages -->
+    <string name="genie_analysing_1">Checking domain reputation…</string>
+    <string name="genie_analysing_2">Analysing sender patterns…</string>
+    <string name="genie_analysing_3">Scanning language signals…</string>
+    <string name="genie_analysing_4">Almost done…</string>
+
+    <!-- Result risk labels -->
+    <string name="genie_result_label_unknown">Unknown</string>
+    <string name="genie_result_label_safe">Safe</string>
+    <string name="genie_result_label_suspicious">Suspicious</string>
+    <string name="genie_result_label_dangerous">Dangerous</string>
+
+    <!-- Result headlines -->
+    <string name="genie_result_headline_unknown">Could not determine</string>
+    <string name="genie_result_headline_safe">Looks legitimate</string>
+    <string name="genie_result_headline_suspicious">Treat with caution</string>
+    <string name="genie_result_headline_dangerous">It\'s almost certainly a scam</string>
+
+    <!-- Result sheet misc -->
+    <string name="genie_result_confidence_label">CONFIDENCE</string>
+    <string name="genie_result_cd_close">Close</string>
+    <string name="genie_result_analyse_another">Analyse another</string>
+
+    <!-- Example chips -->
+    <string name="genie_example_label_sms">SMS</string>
+    <string name="genie_example_text_sms">USPS: Your package is held. Confirm delivery address within 24h: usps-track.help/x29f</string>
+    <string name="genie_example_label_email">EMAIL</string>
+    <string name="genie_example_text_email">Your Amazon order #112–3456789 has shipped. Track at amazon.com/orders</string>
+    <string name="genie_example_label_url">URL</string>
+    <string name="genie_example_text_url">paypa1-secure-login.com/account/verify</string>
 </resources>

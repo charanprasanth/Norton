@@ -1,5 +1,8 @@
 package com.charan.norton.features.genie.presentation
 
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import com.charan.norton.R
 import com.charan.norton.features.genie.domain.model.ScamResult
 
 data class GenieState(
@@ -14,10 +17,9 @@ sealed class GenieAction {
     object OnDismissResult : GenieAction()
 }
 
-sealed interface GenieEvent
-
-val genieExamples = listOf(
-    "SMS" to "USPS: Your package is held. Confirm delivery address within 24h: usps-track.help/x29f",
-    "EMAIL" to "Your Amazon order #112-3456789 has shipped. Track at amazon.com/orders",
-    "URL" to "paypa1-secure-login.com/account/verify",
+@Composable
+fun genieExamples(): List<Pair<String, String>> = listOf(
+    stringResource(R.string.genie_example_label_sms) to stringResource(R.string.genie_example_text_sms),
+    stringResource(R.string.genie_example_label_email) to stringResource(R.string.genie_example_text_email),
+    stringResource(R.string.genie_example_label_url) to stringResource(R.string.genie_example_text_url),
 )
