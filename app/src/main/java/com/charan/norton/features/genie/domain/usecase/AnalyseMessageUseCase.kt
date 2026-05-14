@@ -25,15 +25,13 @@ class AnalyseMessageUseCase @Inject constructor(
             Regex("""\b(password|otp|cvv|pin|card\s*number|account\s*number)\b"""),
             Regex("""account.{0,40}(suspended|blocked|terminated|will be closed)"""),
             Regex("""[a-z0-9\-]+\.(help|xyz|click|info|top|live|online)/"""),
-            Regex("""paypa[^l]|pay-?pal[^.com]|amaz[o0]n|g[o0]{2}gle|micr[o0]s[o0]ft|app[il]e"""),
-            Regex("""[/\-](verify|secure|login|account|update|confirm)[/\-]""")
+            Regex("""[/\-](verify|secure|login)[/\-]""")
         )
 
         val suspiciousPatterns = listOf(
             Regex("""(bit\.ly|tinyurl\.com|t\.co|goo\.gl)/"""),
             Regex("""\b(urgent|immediately|act now|verify now|expires today|limited time)\b"""),
             Regex("""\b(winner|you('ve| have) won|prize|lottery|claim your)\b"""),
-            Regex("""confirm.{0,30}(address|delivery|account)"""),
             Regex("""\b(24h|24 hours|48 hours|within \d+ hours)\b"""),
         )
 
@@ -41,17 +39,12 @@ class AnalyseMessageUseCase @Inject constructor(
             dangerousPatterns.any { it.containsMatchIn(text) } -> ScamResult(
                 riskLevel = RiskLevel.DANGEROUS,
                 confidence = 70,
-                explanation = "Offline analysis: message contains high-risk patterns (credential request, IP link, or account threat)."
-            )
-            suspiciousPatterns.any { it.containsMatchIn(text) } -> ScamResult(
-                riskLevel = RiskLevel.SUSPICIOUS,
-                confidence = 60,
-                explanation = "Offline analysis: message contains suspicious patterns (urgency, shortened URL, or prize claim)."
+                explanation = "Offline analysis: high-risk patterns detected. Connect to internet for full AI scan."
             )
             else -> ScamResult(
-                riskLevel = RiskLevel.SAFE,
-                confidence = 80,
-                explanation = "Offline analysis: no known scam patterns detected. Connect to the internet for a full AI-powered scan."
+                riskLevel = RiskLevel.SUSPICIOUS,
+                confidence = 50,
+                explanation = "Offline analysis: cannot fully verify without internet. Connect to internet for accurate AI-powered scan."
             )
         }
     }
