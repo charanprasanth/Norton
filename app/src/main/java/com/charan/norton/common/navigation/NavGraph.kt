@@ -7,6 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.charan.norton.features.genie.presentation.GenieScreen
 import com.charan.norton.features.scan.presentation.HomeScreen
+import com.charan.norton.features.scan.presentation.ScanResultScreen
+import com.charan.norton.features.scan.presentation.ScanScreen
 
 @Composable
 fun NortonNavGraph(
@@ -19,10 +21,20 @@ fun NortonNavGraph(
         modifier = modifier,
     ) {
         composable(route = Screen.Home.route) {
-            HomeScreen()
+            HomeScreen(
+                onScanClick = { navController.navigate(Screen.Scan.route) }
+            )
         }
         composable(route = Screen.Genie.route) {
             GenieScreen()
+        }
+        composable(route = Screen.Scan.route) {
+            ScanScreen(
+                onViewResults = { navController.navigate(Screen.ScanResult.route) }
+            )
+        }
+        composable(route = Screen.ScanResult.route) {
+            ScanResultScreen()
         }
     }
 }
