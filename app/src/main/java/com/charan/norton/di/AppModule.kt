@@ -5,6 +5,8 @@ import com.anthropic.client.okhttp.AnthropicOkHttpClient
 import com.charan.norton.BuildConfig
 import com.charan.norton.features.genie.data.repository.GenieRepositoryImpl
 import com.charan.norton.features.genie.domain.repository.GenieRepository
+import com.charan.norton.common.network.AndroidNetworkChecker
+import com.charan.norton.common.network.NetworkChecker
 import com.charan.norton.features.scan.data.repository.ScanRepositoryImpl
 import com.charan.norton.features.scan.domain.repository.ScanRepository
 import dagger.Binds
@@ -25,6 +27,10 @@ abstract class AppModule {
     @Binds
     @Singleton
     abstract fun bindScanRepository(impl: ScanRepositoryImpl): ScanRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindNetworkChecker(impl: AndroidNetworkChecker): NetworkChecker
 
     companion object {
 

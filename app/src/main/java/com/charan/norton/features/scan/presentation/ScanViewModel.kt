@@ -28,6 +28,8 @@ class ScanViewModel @Inject constructor(
     }
 
     private fun startScan() {
+        if (_state.value.isScanning || _state.value.isComplete) return
+
         viewModelScope.launch {
             val securityScore = runScan()
             val total = securityScore.checks.size

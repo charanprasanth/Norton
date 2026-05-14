@@ -1,18 +1,27 @@
 package com.charan.norton.features.genie.domain.usecase
 
+import com.charan.norton.common.network.NetworkChecker
 import com.charan.norton.features.genie.domain.model.RiskLevel
 import com.charan.norton.features.genie.domain.model.ScamResult
 import com.charan.norton.features.genie.domain.repository.GenieRepository
 import io.mockk.coEvery
+import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class AnalyseMessageUseCaseTest {
 
     private val repository: GenieRepository = mockk()
-    private val useCase = AnalyseMessageUseCase(repository)
+    private val networkChecker: NetworkChecker = mockk()
+    private val useCase = AnalyseMessageUseCase(repository, networkChecker)
+
+    @BeforeEach
+    fun setUp() {
+        every { networkChecker.isConnected() } returns true
+    }
 
     /**
      * Purpose: Verify DANGEROUS risk responses are parsed correctly.

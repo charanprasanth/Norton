@@ -1,12 +1,11 @@
 package com.charan.norton.common.components
 
-import android.Manifest
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
-import androidx.annotation.RequiresPermission
+import com.charan.norton.common.network.isNetworkAvailable
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
@@ -94,7 +93,7 @@ fun DeviceOffline() {
                 )
                 Spacer(Modifier.width(8.dp))
                 Text(
-                    text = "No internet connection",
+                    text = "Device offline, Go Online for accurate results!",
                     style = MaterialTheme.typography.labelMedium,
                     color = Color.White,
                     fontWeight = FontWeight.Medium
@@ -104,14 +103,6 @@ fun DeviceOffline() {
     }
 }
 
-@RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
-private fun isNetworkAvailable(context: Context): Boolean {
-    val connectivityManager =
-        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-    val network = connectivityManager.activeNetwork ?: return false
-    val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
-    return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-}
 
 @Preview
 @Composable
