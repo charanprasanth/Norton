@@ -30,11 +30,18 @@ fun NortonNavGraph(
         }
         composable(route = Screen.Scan.route) {
             ScanScreen(
-                onViewResults = { navController.navigate(Screen.ScanResult.route) }
+                onBack = { navController.popBackStack() },
+                onViewResults = {
+                    navController.navigate(Screen.ScanResult.route) {
+                        popUpTo(Screen.Scan.route) { inclusive = true }
+                    }
+                }
             )
         }
         composable(route = Screen.ScanResult.route) {
-            ScanResultScreen()
+            ScanResultScreen(
+                onBack = { navController.popBackStack() }
+            )
         }
     }
 }

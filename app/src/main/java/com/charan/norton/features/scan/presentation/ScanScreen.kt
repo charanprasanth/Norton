@@ -11,7 +11,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -38,6 +42,7 @@ import com.charan.norton.features.scan.presentation.components.ScanProgressIndic
 @Composable
 fun ScanScreen(
     viewModel: ScanViewModel = hiltViewModel(),
+    onBack: () -> Unit = {},
     onViewResults: () -> Unit = {}
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -46,11 +51,11 @@ fun ScanScreen(
         viewModel.onAction(ScanAction.StartScan)
     }
 
-    ScanContent(state = state, onViewResults = onViewResults)
+    ScanContent(state = state, onBack = onBack, onViewResults = onViewResults)
 }
 
 @Composable
-fun ScanContent(state: ScanState, onViewResults: () -> Unit) {
+fun ScanContent(state: ScanState, onBack: () -> Unit, onViewResults: () -> Unit) {
 
     // Current scanning check label
     val currentCheckLabel = when {
@@ -71,7 +76,16 @@ fun ScanContent(state: ScanState, onViewResults: () -> Unit) {
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        TitleText(text = "Scanning device")
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            IconButton(onClick = onBack) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
+                    contentDescription = "Back",
+                    tint = MaterialTheme.colorScheme.onBackground
+                )
+            }
+            TitleText(text = "Scanning device")
+        }
 
         SubTitleText(
             text = "Stay on this screen while we run all four checks.",
@@ -163,6 +177,7 @@ fun ScanContent(state: ScanState, onViewResults: () -> Unit) {
 private fun ScanScreenPreviewDark() {
     NortonTheme(darkTheme = true, dynamicColor = false) {
         ScanContent(
+            onBack = {},
             state = ScanState(
                 checks = listOf(
                     ScanCheck(
@@ -199,6 +214,7 @@ private fun ScanScreenPreviewDark() {
 private fun ScanScreenPreviewLight() {
     NortonTheme(darkTheme = false, dynamicColor = false) {
         ScanContent(
+            onBack = {},
             state = ScanState(
                 checks = listOf(
                     ScanCheck(

@@ -14,8 +14,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -47,12 +51,15 @@ import com.charan.norton.features.scan.domain.model.SecurityScore
 import com.charan.norton.features.scan.presentation.components.CheckItemRow
 
 @Composable
-fun ScanResultScreen(viewModel: ScanResultViewModel = hiltViewModel()) {
-    ScanResultContent(scanResult = viewModel.scanResult)
+fun ScanResultScreen(
+    viewModel: ScanResultViewModel = hiltViewModel(),
+    onBack: () -> Unit = {}
+) {
+    ScanResultContent(scanResult = viewModel.scanResult, onBack = onBack)
 }
 
 @Composable
-fun ScanResultContent(scanResult: SecurityScore?) {
+fun ScanResultContent(scanResult: SecurityScore?, onBack: () -> Unit) {
     val checks = scanResult?.checks ?: emptyList()
     val score = scanResult?.overallScore ?: 0
     val needsReviewCount = checks.count { it.status == CheckStatus.WARNING }
@@ -95,7 +102,16 @@ fun ScanResultContent(scanResult: SecurityScore?) {
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        TitleText(text = "Scan results")
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            IconButton(onClick = onBack) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
+                    contentDescription = "Back",
+                    tint = MaterialTheme.colorScheme.onBackground
+                )
+            }
+            TitleText(text = "Scan results")
+        }
 
         SubTitleText(
             text = "Last scan · just now",
@@ -241,7 +257,7 @@ private val previewScore = SecurityScore(
 @Composable
 private fun ScanResultScreenPreviewDark() {
     NortonTheme(darkTheme = true, dynamicColor = false) {
-        ScanResultContent(scanResult = previewScore)
+        ScanResultContent(scanResult = previewScore, onBack = {})
     }
 }
 
@@ -249,6 +265,6 @@ private fun ScanResultScreenPreviewDark() {
 @Composable
 private fun ScanResultScreenPreviewLight() {
     NortonTheme(darkTheme = false, dynamicColor = false) {
-        ScanResultContent(scanResult = previewScore)
+        ScanResultContent(scanResult = previewScore, onBack = {})
     }
 }
