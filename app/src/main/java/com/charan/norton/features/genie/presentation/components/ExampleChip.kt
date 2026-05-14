@@ -39,7 +39,7 @@ fun ExampleChip(
         color = MaterialTheme.colorScheme.surface,
         border = BorderStroke(
             0.5.dp,
-            MaterialTheme.colorScheme.outlineVariant
+            MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
         )
     ) {
         Row(

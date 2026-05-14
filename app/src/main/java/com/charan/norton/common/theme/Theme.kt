@@ -36,7 +36,8 @@ private val LightColorScheme = lightColorScheme(
     onSurfaceVariant = NortonColorsLight.onSurface,
     outline = NortonColorsLight.outline,
     outlineVariant = NortonColorsLight.primaryEdge,
-    scrim = NortonColorsLight.onSurface
+    scrim = NortonColorsLight.onSurface,
+    surfaceTint = transparent
 )
 
 // Dark color scheme
@@ -65,13 +66,14 @@ private val DarkColorScheme = darkColorScheme(
     onSurfaceVariant = NortonColorsDark.onSurface,
     outline = NortonColorsDark.outline,
     outlineVariant = NortonColorsDark.primaryEdge,
-    scrim = NortonColorsDark.onSurface
+    scrim = NortonColorsDark.onSurface,
+    surfaceTint = transparent
 )
 
 @Composable
 fun NortonTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {

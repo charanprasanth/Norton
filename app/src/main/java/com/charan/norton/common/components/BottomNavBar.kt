@@ -1,8 +1,11 @@
 package com.charan.norton.common.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.AutoAwesome
+import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -11,22 +14,21 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.charan.norton.R
 import com.charan.norton.common.navigation.Screen
 import com.charan.norton.common.theme.NortonTheme
 
 private data class BottomNavItem(
     val screen: Screen,
     val label: String,
-    val icon: Int,
+    val icon: ImageVector,
 )
 
 private val bottomNavItems = listOf(
-    BottomNavItem(Screen.Home, "Home", R.drawable.ic_home),
-    BottomNavItem(Screen.Genie, "Genie", R.drawable.ic_genie),
+    BottomNavItem(Screen.Home, "Home", Icons.Outlined.Home),
+    BottomNavItem(Screen.Genie, "Genie", Icons.Outlined.AutoAwesome),
 )
 
 @Composable
@@ -35,11 +37,11 @@ fun BottomNavBar(
     onItemSelected: (Screen) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column(modifier = modifier) {
-        HorizontalDivider(
-            thickness = 1.dp,
-            color = MaterialTheme.colorScheme.outline.copy(alpha = 0.4f),
+    Column(
+        modifier = modifier.background(
+            color = MaterialTheme.colorScheme.surface
         )
+    ) {
         NavigationBar(
             containerColor = MaterialTheme.colorScheme.surface,
             tonalElevation = 0.dp,
@@ -51,7 +53,7 @@ fun BottomNavBar(
                     onClick = { onItemSelected(item.screen) },
                     icon = {
                         Icon(
-                            painter = painterResource(id = item.icon),
+                            imageVector = item.icon,
                             contentDescription = item.label,
                             modifier = Modifier.size(24.dp),
                         )

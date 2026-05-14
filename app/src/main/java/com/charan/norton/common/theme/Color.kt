@@ -39,6 +39,7 @@ val SurfaceColorDark = Color(0xFF1A1826)
 val OutlineColorDark = Color(0xFF3A3847)
 val InkColorDark = Color(0xFFFAF9FE)
 val SurfaceVariantDark = Color(0xFF2A2837)
+val transparent = Color.Transparent
 
 // Colors for Material3 - Light
 object NortonColorsLight {

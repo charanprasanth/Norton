@@ -9,7 +9,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -18,9 +17,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.charan.norton.common.components.PrimaryButton
 import com.charan.norton.common.components.SubTitleText
 import com.charan.norton.common.components.TitleText
 import com.charan.norton.common.theme.NortonTheme
@@ -59,6 +57,9 @@ fun GenieContent(
             value = state.inputText,
             onValueChange = { onAction(GenieAction.OnInputTextChange(it)) },
             enabled = !state.isLoading,
+            onAnalyseClicked = {
+                onAction(GenieAction.OnAnalyse)
+            }
         )
 
         AnimatedContent(
@@ -92,13 +93,6 @@ fun GenieContent(
         }
 
         Spacer(modifier = Modifier.weight(1f))
-
-        PrimaryButton(
-            text = if (state.isLoading) "Analysing..." else "Analyse",
-            onClick = { onAction(GenieAction.OnAnalyse) },
-            enabled = state.inputText.isNotEmpty() && !state.isLoading,
-            modifier = Modifier.fillMaxWidth()
-        )
     }
 
     state.result?.let { result ->
