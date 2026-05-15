@@ -304,6 +304,8 @@ also provide design mockups for each screen, color palette and typography guide 
 
 Claude Design returned full screen mockups, a complete color palette with hex codes, and a typography scale - which I used directly when writing `Color.kt` and `Type.kt`. This was the foundation everything else was built on.
 
+Design is exported to Canva (to view -> https://canva.link/4j0bky4zn6otpdm)
+
 From there I moved to Claude (claude.ai) for architecture planning, then to Claude Code for implementation. Each tool played a different role:
 
 - **ChatGPT** - prompt refinement
