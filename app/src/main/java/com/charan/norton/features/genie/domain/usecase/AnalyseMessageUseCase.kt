@@ -41,10 +41,15 @@ class AnalyseMessageUseCase @Inject constructor(
                 confidence = 70,
                 explanation = "Offline analysis: high-risk patterns detected. Connect to internet for full AI scan."
             )
-            else -> ScamResult(
+            suspiciousPatterns.any { it.containsMatchIn(text) } -> ScamResult(
                 riskLevel = RiskLevel.SUSPICIOUS,
                 confidence = 50,
-                explanation = "Offline analysis: cannot fully verify without internet. Connect to internet for accurate AI-powered scan."
+                explanation = "Offline analysis: suspicious patterns detected. Connect to internet for accurate AI-powered scan."
+            )
+            else -> ScamResult(
+                riskLevel = RiskLevel.UNKNOWN,
+                confidence = 0,
+                explanation = "Offline analysis: cannot determine risk without internet. Connect to internet for an AI-powered scan."
             )
         }
     }
