@@ -414,7 +414,7 @@ I switched from JSON to plain text format (`risk: SAFE\nconfidence: 95\nreason: 
 
 ## AI Code Review Summary
 
-Before submitting, I asked Claude to review the full codebase. It returned a prioritised list of issues.
+Before submitting, I asked Claude to review the full codebase. It returned a prioritised list of issues. Full review summary in [AI-Feedback.md](AI-Feedback.md). (Pasted as it is)
 
 **Issues fixed:**
 
