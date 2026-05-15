@@ -446,6 +446,6 @@ Before submitting, I asked Claude to review the full codebase. It returned a pri
 
 ## Video Walkthrough
 
-> 📹 _Link will be added before final submission._
-> Detailed video 15mins -> https://drive.google.com/file/d/1YB0iKawR23hE3jYlu0VMH7pm6GZx_HmV/view?usp=sharing
+> Genie (Scam Detector) Feature Video -> https://drive.google.com/file/d/1GCvcnNbClAz4okkeXrjI4htJ0ED-Uiq3/view
+> Detailed video 15mins (Scam Detector and Security Health Dashboard) -> https://drive.google.com/file/d/1YB0iKawR23hE3jYlu0VMH7pm6GZx_HmV/view?usp=sharing
  
