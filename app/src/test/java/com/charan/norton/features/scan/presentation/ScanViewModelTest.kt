@@ -74,7 +74,7 @@ class ScanViewModelTest {
      */
     @Test
     fun `StartScan sets isScanning true after launch`() = runTest(testDispatcher) {
-        viewModel.onAction(ScanAction.StartScan)
+        viewModel.onAction(ScanAction.StartScan(emptyList()))
         advanceTimeBy(1)
         assertTrue(viewModel.state.value.isScanning)
     }
@@ -86,7 +86,7 @@ class ScanViewModelTest {
      */
     @Test
     fun `StartScan sets isComplete true and isScanning false when done`() = runTest(testDispatcher) {
-        viewModel.onAction(ScanAction.StartScan)
+        viewModel.onAction(ScanAction.StartScan(emptyList()))
         advanceUntilIdle()
         assertTrue(viewModel.state.value.isComplete)
         assertFalse(viewModel.state.value.isScanning)
@@ -99,7 +99,7 @@ class ScanViewModelTest {
      */
     @Test
     fun `StartScan sets first check to SCANNING and rest to PENDING`() = runTest(testDispatcher) {
-        viewModel.onAction(ScanAction.StartScan)
+        viewModel.onAction(ScanAction.StartScan(emptyList()))
         advanceTimeBy(1)
         val checks = viewModel.state.value.checks
         assertEquals(4, checks.size)
@@ -116,7 +116,7 @@ class ScanViewModelTest {
      */
     @Test
     fun `StartScan sets progress to 1f when done`() = runTest(testDispatcher) {
-        viewModel.onAction(ScanAction.StartScan)
+        viewModel.onAction(ScanAction.StartScan(emptyList()))
         advanceUntilIdle()
         assertEquals(1f, viewModel.state.value.progress)
     }
@@ -128,7 +128,7 @@ class ScanViewModelTest {
      */
     @Test
     fun `StartScan sets scanResult with data from use case`() = runTest(testDispatcher) {
-        viewModel.onAction(ScanAction.StartScan)
+        viewModel.onAction(ScanAction.StartScan(emptyList()))
         advanceUntilIdle()
         val result = viewModel.state.value.scanResult
         assertNotNull(result)
