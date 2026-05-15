@@ -14,15 +14,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.charan.norton.R
 import com.charan.norton.common.components.PrimaryButton
 import com.charan.norton.common.components.SubTitleText
 import com.charan.norton.common.components.TitleText
-import androidx.compose.ui.res.stringResource
-import com.charan.norton.R
 import com.charan.norton.common.theme.NortonTheme
 import com.charan.norton.features.scan.presentation.components.NotScannedIndicator
 
