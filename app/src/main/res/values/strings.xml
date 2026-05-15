@@ -72,6 +72,10 @@
     <string name="status_pending">—</string>
     <string name="status_complete">✓  COMPLETE</string>
 
+    <!-- Bottom navigation -->
+    <string name="nav_label_home">Home</string>
+    <string name="nav_label_genie">Genie</string>
+
     <!-- Shared -->
     <string name="cd_back">Back</string>
 

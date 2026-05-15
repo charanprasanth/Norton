@@ -17,28 +17,28 @@ fun NortonNavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Genie.route,
+        startDestination = GenieRoute,
         modifier = modifier,
     ) {
-        composable(route = Screen.Home.route) {
+        composable<HomeRoute> {
             HomeScreen(
-                onScanClick = { navController.navigate(Screen.Scan.route) }
+                onScanClick = { navController.navigate(ScanRoute) }
             )
         }
-        composable(route = Screen.Genie.route) {
+        composable<GenieRoute> {
             GenieScreen()
         }
-        composable(route = Screen.Scan.route) {
+        composable<ScanRoute> {
             ScanScreen(
                 onBack = { navController.popBackStack() },
                 onViewResults = {
-                    navController.navigate(Screen.ScanResult.route) {
-                        popUpTo(Screen.Scan.route) { inclusive = true }
+                    navController.navigate(ScanResultRoute) {
+                        popUpTo<ScanRoute> { inclusive = true }
                     }
                 }
             )
         }
-        composable(route = Screen.ScanResult.route) {
+        composable<ScanResultRoute> {
             ScanResultScreen(
                 onBack = { navController.popBackStack() }
             )
