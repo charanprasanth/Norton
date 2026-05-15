@@ -447,4 +447,5 @@ Before submitting, I asked Claude to review the full codebase. It returned a pri
 ## Video Walkthrough
 
 > 📹 _Link will be added before final submission._
+> Detailed video 15mins -> https://drive.google.com/file/d/1YB0iKawR23hE3jYlu0VMH7pm6GZx_HmV/view?usp=sharing
  
