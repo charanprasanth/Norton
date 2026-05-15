@@ -3,8 +3,7 @@
 A Norton-inspired Android security application built with Kotlin and Jetpack Compose, featuring a device security scanner and an AI-powered scam detection assistant (Genie). Built as part of the Gen Digital Norton Mobile Engineering AI-First Intern take-home assignment.
 
 > [!NOTE]
-> 🎯 **Primary Submission: Option B - Scam Message Detector**
-> Out of curiosity, I also built **Option A (Security Health Dashboard)** as a bonus. Both features are fully functional in the app.
+> 🎯 **Primary Submission: Option B - Scam Message Detector**. Out of curiosity, I also built **Option A (Security Health Dashboard)** as a bonus. Both features are fully functional in the app.
 
 ---
 
