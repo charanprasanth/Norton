@@ -15,15 +15,17 @@ import androidx.compose.material.icons.outlined.ContentPaste
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.charan.norton.R
+import kotlinx.coroutines.launch
 
 @Composable
 fun InputField(
@@ -32,7 +34,8 @@ fun InputField(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
 ) {
-    val clipboardManager = LocalClipboardManager.current
+    val clipboard = LocalClipboard.current
+    val scope = rememberCoroutineScope()
 
     Column(
         modifier
@@ -79,8 +82,12 @@ fun InputField(
                 imageVector = Icons.Outlined.ContentPaste,
                 description = stringResource(R.string.genie_cd_paste_clipboard),
                 onClick = {
-                    val clipboardText = clipboardManager.getText()?.text ?: ""
-                    onValueChange(clipboardText)
+                    scope.launch {
+                        val clipEntry = clipboard.getClipEntry()
+                        val clipData = clipEntry?.clipData
+                        val text = clipData?.getItemAt(0)?.text?.toString() ?: ""
+                        onValueChange(text)
+                    }
                 }
             )
 
