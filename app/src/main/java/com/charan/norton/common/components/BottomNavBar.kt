@@ -15,26 +15,49 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.charan.norton.common.navigation.Screen
+import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hasRoute
+import com.charan.norton.R
+import com.charan.norton.common.navigation.GenieRoute
+import com.charan.norton.common.navigation.HomeRoute
+import com.charan.norton.common.navigation.ScanResultRoute
+import com.charan.norton.common.navigation.ScanRoute
 import com.charan.norton.common.theme.NortonTheme
 
 private data class BottomNavItem(
-    val screen: Screen,
+    val route: Any,
     val label: String,
     val icon: ImageVector,
+    val isSelected: (NavDestination?) -> Boolean,
 )
 
-private val bottomNavItems = listOf(
-    BottomNavItem(Screen.Home, "Home", Icons.Outlined.Home),
-    BottomNavItem(Screen.Genie, "Genie", Icons.Outlined.AutoAwesome),
+@Composable
+private fun bottomNavItems() = listOf(
+    BottomNavItem(
+        route = HomeRoute,
+        label = stringResource(R.string.nav_label_home),
+        icon = Icons.Outlined.Home,
+        isSelected = { dest ->
+            dest?.hasRoute<HomeRoute>() == true ||
+                dest?.hasRoute<ScanRoute>() == true ||
+                dest?.hasRoute<ScanResultRoute>() == true
+        }
+    ),
+    BottomNavItem(
+        route = GenieRoute,
+        label = stringResource(R.string.nav_label_genie),
+        icon = Icons.Outlined.AutoAwesome,
+        isSelected = { dest -> dest?.hasRoute<GenieRoute>() == true }
+    ),
 )
 
 @Composable
 fun BottomNavBar(
-    currentRoute: String,
-    onItemSelected: (Screen) -> Unit,
+    currentDestination: NavDestination?,
+    onItemSelected: (Any) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -47,18 +70,10 @@ fun BottomNavBar(
             containerColor = MaterialTheme.colorScheme.surface,
             tonalElevation = 0.dp,
         ) {
-            bottomNavItems.forEach { item ->
-                val selected = when (item.screen) {
-                    Screen.Home -> currentRoute in listOf(
-                        Screen.Home.route,
-                        Screen.Scan.route,
-                        Screen.ScanResult.route
-                    )
-                    else -> currentRoute == item.screen.route
-                }
+            bottomNavItems().forEach { item ->
                 NavigationBarItem(
-                    selected = selected,
-                    onClick = { onItemSelected(item.screen) },
+                    selected = item.isSelected(currentDestination),
+                    onClick = { onItemSelected(item.route) },
                     icon = {
                         Icon(
                             imageVector = item.icon,
@@ -85,23 +100,23 @@ fun BottomNavBar(
     }
 }
 
-@Preview(showBackground = true, name = "Light Mode — Home selected")
+@Preview(showBackground = true, name = "Light Mode - Home selected")
 @Composable
 private fun BottomNavBarLightPreview() {
     NortonTheme(darkTheme = false, dynamicColor = false) {
         BottomNavBar(
-            currentRoute = Screen.Home.route,
+            currentDestination = null,
             onItemSelected = {},
         )
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFF0F0E14, name = "Dark Mode — Genie selected")
+@Preview(showBackground = true, backgroundColor = 0xFF0F0E14, name = "Dark Mode - Genie selected")
 @Composable
 private fun BottomNavBarDarkPreview() {
     NortonTheme(darkTheme = true, dynamicColor = false) {
         BottomNavBar(
-            currentRoute = Screen.Genie.route,
+            currentDestination = null,
             onItemSelected = {},
         )
     }

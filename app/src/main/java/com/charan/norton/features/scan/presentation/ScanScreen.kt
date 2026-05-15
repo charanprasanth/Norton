@@ -46,9 +46,15 @@ fun ScanScreen(
     onViewResults: () -> Unit = {}
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val scanningDescriptions = listOf(
+        stringResource(R.string.scan_checking_description_os),
+        stringResource(R.string.scan_checking_description_apps),
+        stringResource(R.string.scan_checking_description_wifi),
+        stringResource(R.string.scan_checking_description_credentials),
+    )
 
     LaunchedEffect(Unit) {
-        viewModel.onAction(ScanAction.StartScan)
+        viewModel.onAction(ScanAction.StartScan(scanningDescriptions))
     }
 
     ScanContent(state = state, onBack = onBack, onViewResults = onViewResults)

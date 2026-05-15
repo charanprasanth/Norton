@@ -14,8 +14,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.charan.norton.common.components.BottomNavBar
+import com.charan.norton.common.navigation.HomeRoute
 import com.charan.norton.common.navigation.NortonNavGraph
-import com.charan.norton.common.navigation.Screen
 import com.charan.norton.common.theme.NortonTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,16 +36,16 @@ class MainActivity : ComponentActivity() {
 fun NortonApp() {
     val navController = rememberNavController()
     val currentBackStack by navController.currentBackStackEntryAsState()
-    val currentRoute = currentBackStack?.destination?.route ?: Screen.Home.route
+    val currentDestination = currentBackStack?.destination
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
             BottomNavBar(
-                currentRoute = currentRoute,
-                onItemSelected = { screen ->
-                    navController.navigate(screen.route) {
-                        popUpTo(Screen.Home.route) { saveState = true }
+                currentDestination = currentDestination,
+                onItemSelected = { route ->
+                    navController.navigate(route) {
+                        popUpTo<HomeRoute> { saveState = true }
                         launchSingleTop = true
                         restoreState = true
                     }

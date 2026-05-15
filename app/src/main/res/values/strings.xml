@@ -50,6 +50,10 @@
     <string name="scan_checks_header">CHECKS</string>
     <string name="scan_checks_progress">%1$d OF %2$d</string>
     <string name="scan_view_results">View Results</string>
+    <string name="scan_checking_description_os">Checking OS version…</string>
+    <string name="scan_checking_description_apps">Reviewing 142 installed apps…</string>
+    <string name="scan_checking_description_wifi">Checking network security…</string>
+    <string name="scan_checking_description_credentials">Checking saved credentials…</string>
 
     <!-- Scan result screen -->
     <string name="scan_result_title">Scan results</string>
@@ -69,8 +73,12 @@
     <string name="status_secure">✓  SECURE</string>
     <string name="status_scanning">SCANNING</string>
     <string name="status_review">⚠ REVIEW</string>
-    <string name="status_pending">—</string>
+    <string name="status_pending">-</string>
     <string name="status_complete">✓  COMPLETE</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_label_home">Home</string>
+    <string name="nav_label_genie">Genie</string>
 
     <!-- Shared -->
     <string name="cd_back">Back</string>

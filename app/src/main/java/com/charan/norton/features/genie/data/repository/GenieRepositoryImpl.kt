@@ -65,7 +65,7 @@ class GenieRepositoryImpl @Inject constructor(
             
             risk: UNKNOWN
             confidence: 0
-            reason: Could not determine — input is too vague or unclear to analyse.
+            reason: Could not determine - input is too vague or unclear to analyse.
         """.trimIndent()
 
         val response = client.messages().create(

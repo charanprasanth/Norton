@@ -23,11 +23,11 @@ class ScanViewModel @Inject constructor(
 
     fun onAction(action: ScanAction) {
         when (action) {
-            is ScanAction.StartScan -> startScan()
+            is ScanAction.StartScan -> startScan(action.scanningDescriptions)
         }
     }
 
-    private fun startScan() {
+    private fun startScan(scanningDescriptions: List<String>) {
         if (_state.value.isScanning || _state.value.isComplete) return
 
         viewModelScope.launch {
@@ -55,7 +55,7 @@ class ScanViewModel @Inject constructor(
                                 )
                                 i == index -> check.copy(
                                     status = CheckStatus.SCANNING,
-                                    description = scanningDescriptions[index]
+                                    description = scanningDescriptions.getOrElse(index) { "" }
                                 )
                                 else -> check
                             }
@@ -81,11 +81,4 @@ class ScanViewModel @Inject constructor(
             }
         }
     }
-
-    private val scanningDescriptions = listOf(
-        "Checking OS version...",
-        "Reviewing 142 installed apps...",
-        "Checking network security...",
-        "Checking saved credentials..."
-    )
 }

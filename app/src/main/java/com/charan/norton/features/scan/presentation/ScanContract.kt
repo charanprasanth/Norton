@@ -13,5 +13,7 @@ data class ScanState(
 )
 
 sealed class ScanAction {
-    object StartScan : ScanAction()
+    data class StartScan(val scanningDescriptions: List<String>) : ScanAction()
 }
+
+sealed interface ScanEvent
