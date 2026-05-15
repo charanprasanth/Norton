@@ -70,6 +70,7 @@ fun DeviceOffline() {
         }
     }
 
+    // Shows when device is offline
     AnimatedVisibility(
         visible = isOffline,
         enter = slideInVertically { it },

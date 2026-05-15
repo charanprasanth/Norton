@@ -77,6 +77,10 @@ fun NotScannedIndicator(size: Dp = 200.dp) {
     }
 }
 
+
+/**
+* This ring UI is fully AI generated, after several attempts of modification, and validated
+**/
 private fun DrawScope.drawDashedRing(
     color: Color,
     dashCount: Int,

@@ -40,6 +40,7 @@ private fun bottomNavItems() = listOf(
         route = HomeRoute,
         label = stringResource(R.string.nav_label_home),
         icon = Icons.Outlined.Home,
+        // setting isSelected true in all the SCAN related screens
         isSelected = { dest ->
             dest?.hasRoute<HomeRoute>() == true ||
                 dest?.hasRoute<ScanRoute>() == true ||

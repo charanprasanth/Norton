@@ -111,7 +111,6 @@ fun ScanContent(state: ScanState, onBack: () -> Unit, onViewResults: () -> Unit)
             ) {
                 ScanProgressIndicator(progress = state.progress)
 
-                // Current check label
                 Text(
                     text = currentCheckLabel,
                     style = MaterialTheme.typography.titleMedium,

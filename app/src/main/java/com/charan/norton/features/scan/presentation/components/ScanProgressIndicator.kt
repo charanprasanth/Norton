@@ -56,7 +56,6 @@ fun ScanProgressIndicator(
         contentAlignment = Alignment.Center,
         modifier = modifier.size(160.dp)
     ) {
-        // Track
         CircularProgressIndicator(
             progress = { 0f },
             modifier = Modifier.size(160.dp),
@@ -64,7 +63,7 @@ fun ScanProgressIndicator(
             strokeWidth = 10.dp,
             strokeCap = StrokeCap.Round
         )
-        // Spinning arc
+        // Spinning arc animation
         CircularProgressIndicator(
             progress = { animatedProgress.value },
             modifier = Modifier
@@ -75,7 +74,7 @@ fun ScanProgressIndicator(
             strokeWidth = 10.dp,
             strokeCap = StrokeCap.Round
         )
-        // Center text
+
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
                 text = "${(animatedProgress.value * 100).toInt()}%",

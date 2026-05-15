@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Key
+import androidx.compose.material.icons.outlined.Memory
 import androidx.compose.material.icons.outlined.PhoneAndroid
 import androidx.compose.material.icons.outlined.Wifi
 import androidx.compose.material3.Icon
@@ -48,10 +49,11 @@ fun CheckItemRow(check: ScanCheck) {
                 CheckStatus.COMPLETE -> MaterialTheme.colorScheme.secondaryContainer
             }
         ) {
+            // showing images with hardcoded text comparison
             Box(contentAlignment = Alignment.Center) {
                 Icon(
                     imageVector = when (check.title) {
-                        "OS Version" -> Icons.Outlined.PhoneAndroid
+                        "OS Version" -> Icons.Outlined.Memory
                         "App Threats" -> Icons.Outlined.PhoneAndroid
                         "Wi-Fi Safety" -> Icons.Outlined.Wifi
                         else -> Icons.Outlined.Key

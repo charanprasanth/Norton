@@ -56,6 +56,9 @@ private data class RiskUi(
     val headlineRes: Int,
 )
 
+/**
+ * Maps a RiskLevel to its corresponding UI representation including icon, color and string resources.
+ */
 private fun RiskLevel.toUi(): RiskUi = when (this) {
     RiskLevel.UNKNOWN -> RiskUi(
         labelRes = R.string.genie_result_label_unknown,
@@ -87,6 +90,7 @@ private fun RiskLevel.toUi(): RiskUi = when (this) {
     )
 }
 
+// composable for all 4 different results
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GenieResult(
