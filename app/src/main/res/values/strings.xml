@@ -35,7 +35,7 @@
     <string name="genie_result_analyse_another">Analyse another</string>
 
     <!-- Home screen -->
-    <string name="home_greeting">Good morning</string>
+    <string name="home_greeting">Check Your Device</string>
     <string name="home_subtitle">Run a quick check to see how your device is doing today.</string>
     <string name="home_scan_card_title">Tap to scan your device</string>
     <string name="home_scan_card_subtitle">We\'ll check OS health, app threats, Wi-Fi safety and passwords. Takes about 10 seconds.</string>

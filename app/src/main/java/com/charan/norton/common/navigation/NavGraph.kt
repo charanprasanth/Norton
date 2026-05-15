@@ -17,7 +17,7 @@ fun NortonNavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Home.route,
+        startDestination = Screen.Genie.route,
         modifier = modifier,
     ) {
         composable(route = Screen.Home.route) {
