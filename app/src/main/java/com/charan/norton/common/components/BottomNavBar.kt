@@ -100,7 +100,7 @@ fun BottomNavBar(
     }
 }
 
-@Preview(showBackground = true, name = "Light Mode — Home selected")
+@Preview(showBackground = true, name = "Light Mode - Home selected")
 @Composable
 private fun BottomNavBarLightPreview() {
     NortonTheme(darkTheme = false, dynamicColor = false) {
@@ -111,7 +111,7 @@ private fun BottomNavBarLightPreview() {
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFF0F0E14, name = "Dark Mode — Genie selected")
+@Preview(showBackground = true, backgroundColor = 0xFF0F0E14, name = "Dark Mode - Genie selected")
 @Composable
 private fun BottomNavBarDarkPreview() {
     NortonTheme(darkTheme = true, dynamicColor = false) {

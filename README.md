@@ -305,7 +305,7 @@ Throughout the project I used Claude (claude.ai and Claude Code) as my primary A
  
 ---
 
-### Prompt 1 — Bottom navigation and screen wiring
+### Prompt 1 - Bottom navigation and screen wiring
 
 **What I asked:**
 ```
@@ -322,7 +322,7 @@ After an AI code review flagged string-based routes as the old Nav 2.x style, I 
  
 ---
 
-### Prompt 2 — Dagger Hilt setup
+### Prompt 2 - Dagger Hilt setup
 
 **What I asked:**
 ```
@@ -334,11 +334,11 @@ dependencies and setup the codebase for dependency injection with AppModule.
 Full Hilt setup across `libs.versions.toml`, `build.gradle.kts`, `AppModule.kt`, and `NortonApplication.kt`.
 
 **My refinement:**
-Hit a KSP version conflict — the version Claude suggested wasn't compatible with my Kotlin version. I manually looked up the correct KSP version for Kotlin 2.x and updated both `libs.versions.toml` and the plugin declaration. The rest of the Hilt setup was used as-is.
+Hit a KSP version conflict - the version Claude suggested wasn't compatible with my Kotlin version. I manually looked up the correct KSP version for Kotlin 2.x and updated both `libs.versions.toml` and the plugin declaration. The rest of the Hilt setup was used as-is.
  
 ---
 
-### Prompt 3 — Genie AI integration
+### Prompt 3 - Genie AI integration
 
 **What I asked:**
 ```
@@ -349,14 +349,14 @@ with TAG: SCAM_RESULT.
 ```
 
 **What Claude returned:**
-Changes across 6 files: `libs.versions.toml`, `build.gradle.kts`, `AppModule.kt`, `GenieContract.kt`, `GenieViewModel.kt`, and `GenieScreen.kt` — all wired up for the Gemini SDK.
+Changes across 6 files: `libs.versions.toml`, `build.gradle.kts`, `AppModule.kt`, `GenieContract.kt`, `GenieViewModel.kt`, and `GenieScreen.kt` - all wired up for the Gemini SDK.
 
 **My refinement:**
-I didn't have Gemini API credits, so I switched to the Anthropic SDK (Claude Haiku) instead. The architecture Claude generated was reused entirely — I only swapped the SDK dependency and the API call implementation. Also later moved the API call out of the ViewModel into a `GenieRepository` after a code review flagged the violation.
+I didn't have Gemini API credits, so I switched to the Anthropic SDK (Claude Haiku) instead. The architecture Claude generated was reused entirely - I only swapped the SDK dependency and the API call implementation. Also later moved the API call out of the ViewModel into a `GenieRepository` after a code review flagged the violation.
  
 ---
 
-### Prompt 4 — GenieResult bottom sheet composable
+### Prompt 4 - GenieResult bottom sheet composable
 
 **What I asked:**
 ```
@@ -367,16 +367,16 @@ design; description; and an Analyse another button (primary button).
 ```
 
 **What Claude returned:**
-A working composable with a `RiskUi` private data class mapping each `RiskLevel` to label, icon, color, and headline — all three variants sharing the same layout.
+A working composable with a `RiskUi` private data class mapping each `RiskLevel` to label, icon, color, and headline - all three variants sharing the same layout.
 
 **My refinement:**
-- Replaced `LinearProgressIndicator` with a `Box`-based custom bar — Material3's indicator had a visual artifact (small dot at the end of the track)
+- Replaced `LinearProgressIndicator` with a `Box`-based custom bar - Material3's indicator had a visual artifact (small dot at the end of the track)
 - Set `dragHandle = null` on `ModalBottomSheet` to prevent swipe-to-dismiss
-- Claude attempted to use `MaterialTheme` colors inside a non-composable function — caught and fixed manually
-- Claude used a deprecated icon (`Icons.Outlined.HelpOutline`) for the UNKNOWN case — replaced with a valid alternative
+- Claude attempted to use `MaterialTheme` colors inside a non-composable function - caught and fixed manually
+- Claude used a deprecated icon (`Icons.Outlined.HelpOutline`) for the UNKNOWN case - replaced with a valid alternative
 ---
 
-### Prompt 5 — COMPLETE status for scan checks
+### Prompt 5 - COMPLETE status for scan checks
 
 **What I asked:**
 ```
@@ -386,14 +386,14 @@ should only appear on the ScanResult screen. Add COMPLETE to the enum for this.
 ```
 
 **What Claude returned:**
-Changes across `CheckStatus` enum, `ScanViewModel`, `ScanScreen`, `StatusPill`, and `CheckItemRow` — all updated consistently.
+Changes across `CheckStatus` enum, `ScanViewModel`, `ScanScreen`, `StatusPill`, and `CheckItemRow` - all updated consistently.
 
 **My refinement:**
-Used as-is. The output was clean and covered all the affected files in one pass without me having to follow up. This was one of the better Claude Code responses in the project — full context awareness, no regressions.
+Used as-is. The output was clean and covered all the affected files in one pass without me having to follow up. This was one of the better Claude Code responses in the project - full context awareness, no regressions.
  
 ---
 
-### Prompt 6 — Designing the Genie system prompt
+### Prompt 6 - Designing the Genie system prompt
 
 **What I asked:**
 ```
@@ -408,7 +408,7 @@ A JSON-based prompt that instructed the model to return `{"risk":"...","confiden
 **My refinement:**
 I switched from JSON to plain text format (`risk: SAFE\nconfidence: 95\nreason: ...`) after realising that `JSONObject` is an Android class and fails in JVM unit tests. Plain text with regex parsing works everywhere without extra libraries. I also added explicit classification rules, red flag examples, and a special case for gibberish input.
 
-**What I learned:** Prompt format choices have downstream engineering implications — what's convenient for parsing in production might break your test suite.
+**What I learned:** Prompt format choices have downstream engineering implications - what's convenient for parsing in production might break your test suite.
  
 ---
 
@@ -418,15 +418,15 @@ Before submitting, I asked Claude to review the full codebase. It returned a pri
 
 **Issues fixed:**
 
-1. **Dead code in offline analyser** — `suspiciousPatterns` was defined but never used in the `when` block. Every non-dangerous offline input was defaulting to `SUSPICIOUS` regardless of whether it matched suspicious patterns. Fixed the `when` block to check both lists correctly.
-2. **`object` instead of `data object` in sealed classes** — `GenieAction` and `ScanAction` used `object` for singleton actions, missing `toString`, `equals`, and `hashCode`. Changed to `data object` across both contracts.
-3. **Missing `Event` type in MVI contracts** — Neither `GenieContract.kt` nor `ScanContract.kt` had a sealed `Event` interface. Added both to keep the pattern consistent for future additions.
-4. **String-based navigation routes** — The `sealed class Screen(val route: String)` approach is Nav 2.x style. Migrated to type-safe navigation with `@Serializable` objects.
+1. **Dead code in offline analyser** - `suspiciousPatterns` was defined but never used in the `when` block. Every non-dangerous offline input was defaulting to `SUSPICIOUS` regardless of whether it matched suspicious patterns. Fixed the `when` block to check both lists correctly.
+2. **`object` instead of `data object` in sealed classes** - `GenieAction` and `ScanAction` used `object` for singleton actions, missing `toString`, `equals`, and `hashCode`. Changed to `data object` across both contracts.
+3. **Missing `Event` type in MVI contracts** - Neither `GenieContract.kt` nor `ScanContract.kt` had a sealed `Event` interface. Added both to keep the pattern consistent for future additions.
+4. **String-based navigation routes** - The `sealed class Screen(val route: String)` approach is Nav 2.x style. Migrated to type-safe navigation with `@Serializable` objects.
    **Issues reviewed and intentionally kept:**
 
-- **Mocks over fakes in tests** — Claude suggested hand-written fakes instead of MockK. Kept MockK — the test scope didn't warrant the overhead of maintaining separate fake implementations.
-- **`LaunchedEffect(Unit)` auto-starting the scan** — Flagged as removing user agency. Kept intentionally — `startScan()` guards against re-entry, so navigating back doesn't restart the scan.
-- **`CheckStatus` having both `SECURE` and `COMPLETE`** — Flagged as inconsistent. Kept by design — `SECURE` is the domain result from the data source, `COMPLETE` is a presentation-only state for the scan animation. They serve different layers.
+- **Mocks over fakes in tests** - Claude suggested hand-written fakes instead of MockK. Kept MockK - the test scope didn't warrant the overhead of maintaining separate fake implementations.
+- **`LaunchedEffect(Unit)` auto-starting the scan** - Flagged as removing user agency. Kept intentionally - `startScan()` guards against re-entry, so navigating back doesn't restart the scan.
+- **`CheckStatus` having both `SECURE` and `COMPLETE`** - Flagged as inconsistent. Kept by design - `SECURE` is the domain result from the data source, `COMPLETE` is a presentation-only state for the scan animation. They serve different layers.
 ---
 
 ## Reflection
@@ -434,14 +434,14 @@ Before submitting, I asked Claude to review the full codebase. It returned a pri
 ### What did you learn?
 
 - **Writing unit tests surfaced design problems I wouldn't have caught otherwise.** When my `JSONObject`-based parser failed in JVM unit tests, it forced me to rethink the parsing strategy entirely. The regex approach I landed on was simpler, more portable, and more resilient to edge cases like Claude wrapping output in markdown code blocks.
-- **AI code review is genuinely useful for catching things you stop seeing.** I asked Claude to review the codebase before submitting and it caught four real issues: dead code in the offline pattern matcher, sealed class actions using `object` instead of `data object`, missing `Event` type in MVI contracts, and string-based navigation routes. I fixed all four. The rest of the feedback I reviewed and intentionally kept as-is — for example, keeping MockK over fakes because the test scope didn't warrant the overhead.
-- **Working with AI daily changes how you allocate attention.** The boilerplate — DI setup, repository scaffolding, contract files — came quickly with AI assistance. The time I saved went into architecture decisions, edge cases, and reviewing AI output critically rather than accepting it blindly.
+- **AI code review is genuinely useful for catching things you stop seeing.** I asked Claude to review the codebase before submitting and it caught four real issues: dead code in the offline pattern matcher, sealed class actions using `object` instead of `data object`, missing `Event` type in MVI contracts, and string-based navigation routes. I fixed all four. The rest of the feedback I reviewed and intentionally kept as-is - for example, keeping MockK over fakes because the test scope didn't warrant the overhead.
+- **Working with AI daily changes how you allocate attention.** The boilerplate - DI setup, repository scaffolding, contract files - came quickly with AI assistance. The time I saved went into architecture decisions, edge cases, and reviewing AI output critically rather than accepting it blindly.
 ### What would I do differently?
 
 - **Write tests earlier.** I wrote most tests after the implementation was done. If I had written them in parallel, I would have caught the `JSONObject` issue much earlier and designed the parsing interface around testability from the start.
-- **Be more specific in prompts upfront.** Some back-and-forth with Claude Code could have been avoided with better initial context — being explicit about existing file names, naming conventions, and decisions already made earlier in the session.
-- **Use Claude Design before writing a single line of code.** Starting with Claude Design gave me screen mockups, a color palette, and a typography scale to work from — but I didn't fully appreciate how much that would shape the implementation until I was already coding. Next time I'd treat the design phase as a proper planning step, not just a starting point. One thing worth noting — I followed the Claude Design mockups around 90%, not 100%. Some specific icons and vectors from the design were hard to source exactly, so I substituted the closest available Material icons. The overall layout, color palette, and typography were followed precisely.
-- **Bridge the gap between Claude Code and Claude web app more deliberately.** Claude Code in Android Studio doesn't accept images, so whenever I needed to share a screenshot — a UI issue, a design reference, an error state — I had to switch to the Claude web app, explain the context there, get a prompt, then bring that back to Claude Code. It worked, but maintaining the same context across two places was friction I hadn't anticipated. Next time I'd document the shared context somewhere I can paste quickly into either tool.
+- **Be more specific in prompts upfront.** Some back-and-forth with Claude Code could have been avoided with better initial context - being explicit about existing file names, naming conventions, and decisions already made earlier in the session.
+- **Use Claude Design before writing a single line of code.** Starting with Claude Design gave me screen mockups, a color palette, and a typography scale to work from - but I didn't fully appreciate how much that would shape the implementation until I was already coding. Next time I'd treat the design phase as a proper planning step, not just a starting point. One thing worth noting - I followed the Claude Design mockups around 90%, not 100%. Some specific icons and vectors from the design were hard to source exactly, so I substituted the closest available Material icons. The overall layout, color palette, and typography were followed precisely.
+- **Bridge the gap between Claude Code and Claude web app more deliberately.** Claude Code in Android Studio doesn't accept images, so whenever I needed to share a screenshot - a UI issue, a design reference, an error state - I had to switch to the Claude web app, explain the context there, get a prompt, then bring that back to Claude Code. It worked, but maintaining the same context across two places was friction I hadn't anticipated. Next time I'd document the shared context somewhere I can paste quickly into either tool.
 ---
 
 ## Video Walkthrough

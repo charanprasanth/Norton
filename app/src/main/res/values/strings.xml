@@ -73,7 +73,7 @@
     <string name="status_secure">✓  SECURE</string>
     <string name="status_scanning">SCANNING</string>
     <string name="status_review">⚠ REVIEW</string>
-    <string name="status_pending">—</string>
+    <string name="status_pending">-</string>
     <string name="status_complete">✓  COMPLETE</string>
 
     <!-- Bottom navigation -->

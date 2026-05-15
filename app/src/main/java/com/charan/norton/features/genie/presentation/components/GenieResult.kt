@@ -251,7 +251,7 @@ private fun GenieResultSuspiciousPreview() {
         GenieResult(
             riskLevel = RiskLevel.SUSPICIOUS,
             confidence = 78,
-            explanation = "Several signals don't add up — the urgency language and shortened link are common in phishing, but the sender is otherwise unknown. Don't tap any links.",
+            explanation = "Several signals don't add up - the urgency language and shortened link are common in phishing, but the sender is otherwise unknown. Don't tap any links.",
             onDismiss = {},
         )
     }
