@@ -245,6 +245,22 @@ Presentation
 
 ---
 
+## Norton 360 - App Exploration Notes (Reference)
+
+Before coding, I spent time exploring the Norton 360 app on Android.
+
+**What I noticed and how it influenced my build:**
+
+- **Smart Scan** - Norton uses a radar-style animation during scanning. I chose a different approach - a spinning circular progress indicator with per-check status updates. The radar animation felt more decorative than informative, a progress-based design gives the user a clearer sense of how far along the scan is and what's currently being checked.
+
+- **Norton Genie** - Works like an AI chat interface, conversational back-and-forth. The assignment spec for Option B explicitly called for a text input field with an Analyse button - so I followed the spec rather than replicating Norton Genie's chat UX. The bottom sheet result format felt like the cleanest way to present the structured output (risk level, confidence, explanation) without building a full chat interface.
+
+- **VPN** - Clean one-tap experience. I referenced this when writing the Wi-Fi Safety mock result: "Open network · consider VPN" - a nod to what Norton VPN actually solves.
+
+- **Device Security & Password Checks** - Informed the four checks I chose for the scanner: OS Version, App Threats, Wi-Fi Safety, and Password Strength. These directly map to what Norton surfaces in Smart Scan.
+
+- **Dark Web Monitoring - UX issue found** - When adding a phone number to monitor, the country code selector appeared at the top with Ireland pre-selected (correct, I'm in Ireland). But when I tried to add a second number with a different country code, it took me around 15 seconds to navigate - it's alphabetically sorted in some sections but not everything, making it hard to scan quickly. At the end it is on top 15, alphabetically it should be down :).
+
 ## My AI Journey With This Project
 
 Before writing a single line of code, I started with Claude Design to visualise the screens. I used ChatGPT to optimise my initial rough prompt into something more structured, then fed it to Claude Design to generate the mockups.
