@@ -20,20 +20,32 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 abstract class AppModule {
 
+    /**
+     * Binds GenieRepositoryImpl as the singleton implementation of GenieRepository.
+     */
     @Binds
     @Singleton
     abstract fun bindGenieRepository(impl: GenieRepositoryImpl): GenieRepository
 
+    /**
+     * Binds ScanRepositoryImpl as the singleton implementation of ScanRepository.
+     */
     @Binds
     @Singleton
     abstract fun bindScanRepository(impl: ScanRepositoryImpl): ScanRepository
 
+    /**
+     * Binds AndroidNetworkChecker as the singleton implementation of NetworkChecker.
+     */
     @Binds
     @Singleton
     abstract fun bindNetworkChecker(impl: AndroidNetworkChecker): NetworkChecker
 
     companion object {
 
+        /**
+         * Provides a singleton AnthropicClient configured with the API key from BuildConfig.
+         */
         @Provides
         @Singleton
         fun provideAnthropicClient(): AnthropicClient = AnthropicOkHttpClient.builder()

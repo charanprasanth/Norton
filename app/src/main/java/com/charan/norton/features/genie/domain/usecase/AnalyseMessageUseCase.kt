@@ -11,12 +11,18 @@ class AnalyseMessageUseCase @Inject constructor(
     private val networkChecker: NetworkChecker
 ) {
 
+    /**
+     * Runs AI analysis if connected, falls back to local pattern matching when offline.
+     */
     suspend operator fun invoke(input: String): ScamResult {
         if (!networkChecker.isConnected()) return localAnalyse(input)
         val raw = repository.analyseMessage(input)
         return parseResult(raw)
     }
 
+    /**
+     * Performs regex-based risk detection without a network call.
+     */
     private fun localAnalyse(input: String): ScamResult {
         val text = input.lowercase()
 
@@ -54,6 +60,9 @@ class AnalyseMessageUseCase @Inject constructor(
         }
     }
 
+    /**
+     * Parses the structured text response from the AI into a ScamResult.
+     */
     private fun parseResult(raw: String): ScamResult {
         return try {
             val fallback = ScamResult(RiskLevel.UNKNOWN, 0, "Unable to determine risk.")

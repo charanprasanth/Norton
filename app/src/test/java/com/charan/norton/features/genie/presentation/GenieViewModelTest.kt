@@ -40,7 +40,7 @@ class GenieViewModelTest {
     }
 
     /**
-     * Purpose: Verify input text updates correctly in ViewModel state.
+     * Verify input text updates correctly in ViewModel state.
      *
      * Author: charanprasanth
      */
@@ -51,7 +51,7 @@ class GenieViewModelTest {
     }
 
     /**
-     * Purpose: Verify loading state changes correctly during analysis.
+     * Verify loading state changes correctly during analysis.
      *
      * Author: charanprasanth
      */
@@ -67,7 +67,7 @@ class GenieViewModelTest {
     }
 
     /**
-     * Purpose: Verify successful analysis updates result state correctly.
+     * Verify successful analysis updates result state correctly.
      *
      * Author: charanprasanth
      */
@@ -83,7 +83,7 @@ class GenieViewModelTest {
     }
 
     /**
-     * Purpose: Verify analyse action is ignored for empty input.
+     * Verify analyse action is ignored for empty input.
      *
      * AI-generated and validated
      */
@@ -95,7 +95,7 @@ class GenieViewModelTest {
     }
 
     /**
-     * Purpose: Verify loading state resets correctly when analysis fails.
+     * Verify loading state resets correctly when analysis fails.
      *
      * AI-generated and validated
      */
@@ -112,7 +112,7 @@ class GenieViewModelTest {
     }
 
     /**
-     * Purpose: Verify dismiss action clears analysis result from state.
+     * Verify dismiss action clears analysis result from state.
      *
      * AI-generated and validated
      */

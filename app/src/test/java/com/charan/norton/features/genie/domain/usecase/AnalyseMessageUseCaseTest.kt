@@ -24,7 +24,7 @@ class AnalyseMessageUseCaseTest {
     }
 
     /**
-     * Purpose: Verify DANGEROUS risk responses are parsed correctly.
+     * Verify DANGEROUS risk responses are parsed correctly.
      *
      * Author: charanprasanth
      */
@@ -36,7 +36,7 @@ class AnalyseMessageUseCaseTest {
     }
 
     /**
-     * Purpose: Verify SUSPICIOUS risk responses are parsed correctly.
+     * Verify SUSPICIOUS risk responses are parsed correctly.
      *
      * Author: charanprasanth
      */
@@ -48,7 +48,7 @@ class AnalyseMessageUseCaseTest {
     }
 
     /**
-     * Purpose: Verify SAFE risk responses are parsed correctly.
+     * Verify SAFE risk responses are parsed correctly.
      *
      * Author: charanprasanth
      */
@@ -60,7 +60,7 @@ class AnalyseMessageUseCaseTest {
     }
 
     /**
-     * Purpose: Verify UNKNOWN risk responses are handled correctly.
+     * Verify UNKNOWN risk responses are handled correctly.
      *
      * AI-generated and validated
      */
@@ -72,7 +72,7 @@ class AnalyseMessageUseCaseTest {
     }
 
     /**
-     * Purpose: Verify risk parsing remains case-insensitive.
+     * Verify risk parsing remains case-insensitive.
      *
      * Author: charanprasanth (AI assisted)
      */
@@ -84,7 +84,7 @@ class AnalyseMessageUseCaseTest {
     }
 
     /**
-     * Purpose: Verify confidence values above 100 are safely clamped.
+     * Verify confidence values above 100 are safely clamped.
      *
      * AI-generated and validated
      */
@@ -96,7 +96,7 @@ class AnalyseMessageUseCaseTest {
     }
 
     /**
-     * Purpose: Verify zero confidence always maps to UNKNOWN risk.
+     * Verify zero confidence always maps to UNKNOWN risk.
      *
      * AI-generated and validated
      */
@@ -108,7 +108,7 @@ class AnalyseMessageUseCaseTest {
     }
 
     /**
-     * Purpose: Verify malformed responses return fallback results safely.
+     * Verify malformed responses return fallback results safely.
      *
      * AI-generated and validated
      */
@@ -120,7 +120,7 @@ class AnalyseMessageUseCaseTest {
     }
 
     /**
-     * Purpose: Verify empty responses return fallback results safely.
+     * Verify empty responses return fallback results safely.
      *
      * AI-generated and validated
      */
