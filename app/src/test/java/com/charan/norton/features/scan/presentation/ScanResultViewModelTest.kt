@@ -15,9 +15,7 @@ class ScanResultViewModelTest {
     private val repository: ScanRepository = mockk()
 
     /**
-     * Purpose: Verify scanResult is populated with the last scan stored in the repository.
-     *
-     * Author: charanprasanth
+     * Verify scanResult is populated with the last scan stored in the repository.
      */
     @Test
     fun `scanResult reflects last scan from repository`() {
@@ -36,9 +34,7 @@ class ScanResultViewModelTest {
     }
 
     /**
-     * Purpose: Verify scanResult is null when no scan has been run yet.
-     *
-     * Author: charanprasanth
+     * Verify scanResult is null when no scan has been run yet.
      */
     @Test
     fun `scanResult is null when no previous scan exists`() {
@@ -48,9 +44,7 @@ class ScanResultViewModelTest {
     }
 
     /**
-     * Purpose: Verify the overall score from the last scan is surfaced correctly.
-     *
-     * Author: charanprasanth
+     * Verify the overall score from the last scan is surfaced correctly.
      */
     @Test
     fun `scanResult exposes correct overall score`() {

@@ -14,6 +14,9 @@ class GenieRepositoryImpl @Inject constructor(
     private val client: AnthropicClient
 ) : GenieRepository {
 
+    /**
+     * Sends the input to Claude and returns the raw structured text response.
+     */
     override suspend fun analyseMessage(input: String): String = withContext(Dispatchers.IO) {
         val systemPrompt = """
             You are a scam detection engine inside Norton Genie. Analyse the given message, URL, email, or text for phishing, fraud, impersonation, scams, or malicious intent.

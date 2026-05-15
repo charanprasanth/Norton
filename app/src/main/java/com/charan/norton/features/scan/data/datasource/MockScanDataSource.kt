@@ -9,8 +9,14 @@ class MockScanDataSource @Inject constructor() {
 
     private var lastResult: SecurityScore? = null
 
+    /**
+     * Returns the most recently fetched security score, or null if none exists.
+     */
     fun getLastResult(): SecurityScore? = lastResult
 
+    /**
+     * Builds a hardcoded security score and caches it as the last result.
+     */
     fun fetchSecurityScore(): SecurityScore {
         val checks = listOf(
             ScanCheck("OS Version", "Android 14 · up to date", CheckStatus.SECURE),

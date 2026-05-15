@@ -26,9 +26,7 @@ class RunScanUseCaseTest {
     )
 
     /**
-     * Purpose: Verify use case returns the score provided by the repository.
-     *
-     * Author: charanprasanth
+     * Verify use case returns the score provided by the repository.
      */
     @Test
     fun `invoke returns score from repository`() = runTest {
@@ -38,9 +36,7 @@ class RunScanUseCaseTest {
     }
 
     /**
-     * Purpose: Verify use case propagates exceptions thrown by the repository.
-     *
-     * Author: charanprasanth
+     * Verify use case propagates exceptions thrown by the repository.
      */
     @Test
     fun `invoke propagates repository exception`() = runTest {

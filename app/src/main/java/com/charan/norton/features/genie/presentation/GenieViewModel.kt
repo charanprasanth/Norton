@@ -19,6 +19,9 @@ class GenieViewModel @Inject constructor(
     private val _state = MutableStateFlow(GenieState())
     val state = _state.asStateFlow()
 
+    /**
+     * Routes UI actions to the appropriate handler.
+     */
     fun onAction(action: GenieAction) {
         when (action) {
             is GenieAction.OnInputTextChange -> _state.update { it.copy(inputText = action.text) }
@@ -27,6 +30,9 @@ class GenieViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Submits the current input to the use case and updates loading and result state.
+     */
     private fun analyse() {
         val input = _state.value.inputText.trim()
         if (input.isEmpty()) return

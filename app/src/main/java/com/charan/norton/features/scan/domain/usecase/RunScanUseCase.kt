@@ -7,5 +7,8 @@ import javax.inject.Inject
 class RunScanUseCase @Inject constructor(
     private val repository: ScanRepository
 ) {
+    /**
+     * Delegates to the repository to fetch the device security score.
+     */
     suspend operator fun invoke(): SecurityScore = repository.runScan()
 }

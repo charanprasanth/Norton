@@ -21,12 +21,18 @@ class ScanViewModel @Inject constructor(
     private val _state = MutableStateFlow(ScanState())
     val state = _state.asStateFlow()
 
+    /**
+     * Routes UI actions to the appropriate handler.
+     */
     fun onAction(action: ScanAction) {
         when (action) {
             is ScanAction.StartScan -> startScan(action.scanningDescriptions)
         }
     }
 
+    /**
+     * Runs the scan, animating each check sequentially with a delay between steps.
+     */
     private fun startScan(scanningDescriptions: List<String>) {
         if (_state.value.isScanning || _state.value.isComplete) return
 

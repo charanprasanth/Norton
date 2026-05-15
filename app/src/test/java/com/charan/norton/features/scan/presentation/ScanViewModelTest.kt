@@ -53,9 +53,7 @@ class ScanViewModelTest {
     }
 
     /**
-     * Purpose: Verify ViewModel starts with a clean default state before any action is dispatched.
-     *
-     * Author: charanprasanth
+     * Verify ViewModel starts with a clean default state before any action is dispatched.
      */
     @Test
     fun `initial state is default`() {
@@ -68,9 +66,7 @@ class ScanViewModelTest {
     }
 
     /**
-     * Purpose: Verify isScanning is set to true as soon as the scan coroutine starts.
-     *
-     * Author: charanprasanth
+     * Verify isScanning is set to true as soon as the scan coroutine starts.
      */
     @Test
     fun `StartScan sets isScanning true after launch`() = runTest(testDispatcher) {
@@ -80,9 +76,7 @@ class ScanViewModelTest {
     }
 
     /**
-     * Purpose: Verify isComplete is true and isScanning is false once the scan finishes.
-     *
-     * Author: charanprasanth
+     * Verify isComplete is true and isScanning is false once the scan finishes.
      */
     @Test
     fun `StartScan sets isComplete true and isScanning false when done`() = runTest(testDispatcher) {
@@ -93,9 +87,7 @@ class ScanViewModelTest {
     }
 
     /**
-     * Purpose: Verify the first check transitions to SCANNING while the rest stay PENDING.
-     *
-     * AI-generated and validated
+     * Verify the first check transitions to SCANNING while the rest stay PENDING.
      */
     @Test
     fun `StartScan sets first check to SCANNING and rest to PENDING`() = runTest(testDispatcher) {
@@ -110,9 +102,7 @@ class ScanViewModelTest {
     }
 
     /**
-     * Purpose: Verify progress reaches exactly 1f when the scan completes.
-     *
-     * AI-generated and validated
+     * Verify progress reaches exactly 1f when the scan completes.
      */
     @Test
     fun `StartScan sets progress to 1f when done`() = runTest(testDispatcher) {
@@ -122,9 +112,7 @@ class ScanViewModelTest {
     }
 
     /**
-     * Purpose: Verify scanResult is populated with the SecurityScore from the use case on completion.
-     *
-     * AI-generated and validated
+     * Verify scanResult is populated with the SecurityScore from the use case on completion.
      */
     @Test
     fun `StartScan sets scanResult with data from use case`() = runTest(testDispatcher) {
