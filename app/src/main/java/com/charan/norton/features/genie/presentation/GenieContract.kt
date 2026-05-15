@@ -17,6 +17,8 @@ sealed class GenieAction {
     data object OnDismissResult : GenieAction()
 }
 
+sealed interface GenieEvent
+
 @Composable
 fun genieExamples(): List<Pair<String, String>> = listOf(
     stringResource(R.string.genie_example_label_sms) to stringResource(R.string.genie_example_text_sms),
