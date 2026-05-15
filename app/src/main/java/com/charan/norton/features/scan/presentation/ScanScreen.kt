@@ -8,9 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material3.HorizontalDivider
@@ -48,9 +46,15 @@ fun ScanScreen(
     onViewResults: () -> Unit = {}
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val scanningDescriptions = listOf(
+        stringResource(R.string.scan_checking_description_os),
+        stringResource(R.string.scan_checking_description_apps),
+        stringResource(R.string.scan_checking_description_wifi),
+        stringResource(R.string.scan_checking_description_credentials),
+    )
 
     LaunchedEffect(Unit) {
-        viewModel.onAction(ScanAction.StartScan)
+        viewModel.onAction(ScanAction.StartScan(scanningDescriptions))
     }
 
     ScanContent(state = state, onBack = onBack, onViewResults = onViewResults)

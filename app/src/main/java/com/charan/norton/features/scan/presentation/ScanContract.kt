@@ -13,7 +13,7 @@ data class ScanState(
 )
 
 sealed class ScanAction {
-    data object StartScan : ScanAction() //singleton and data-like behaviour -> better better toString(), structural equality/hashCode
+    data class StartScan(val scanningDescriptions: List<String>) : ScanAction()
 }
 
 sealed interface ScanEvent
