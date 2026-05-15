@@ -13,5 +13,5 @@ data class ScanState(
 )
 
 sealed class ScanAction {
-    object StartScan : ScanAction()
+    data object StartScan : ScanAction() //singleton and data-like behaviour -> better better toString(), structural equality/hashCode
 }

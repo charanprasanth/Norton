@@ -13,8 +13,8 @@ data class GenieState(
 
 sealed class GenieAction {
     data class OnInputTextChange(val text: String) : GenieAction()
-    object OnAnalyse : GenieAction()
-    object OnDismissResult : GenieAction()
+    data object OnAnalyse : GenieAction()
+    data object OnDismissResult : GenieAction()
 }
 
 @Composable
